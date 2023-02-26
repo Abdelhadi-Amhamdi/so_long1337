@@ -6,7 +6,7 @@
 /*   By: aamhamdi <aamhamdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 19:34:33 by aamhamdi          #+#    #+#             */
-/*   Updated: 2023/02/26 11:24:58 by aamhamdi         ###   ########.fr       */
+/*   Updated: 2023/02/26 12:25:24 by aamhamdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,13 @@ void	ft_init_images(t_long *game, t_image *img)
 	img->wr = mlx_xpm_file_to_image(game->mlx, "images/wall/wall2.xpm", &s, &s);
 	img->pr = mlx_xpm_file_to_image(game->mlx, "images/player/pr.xpm", &s, &s);
 	img->pl = mlx_xpm_file_to_image(game->mlx, "images/player/pl.xpm", &s, &s);
-	img->pc = mlx_xpm_file_to_image(game->mlx, "pc.xpm", &s, &s);
 	img->p = mlx_xpm_file_to_image(game->mlx, "images/player/pt.xpm", &s, &s);
-	img->bg = mlx_xpm_file_to_image(game->mlx, "images/bg1.xpm", &s, &s);
-	img->bc = mlx_xpm_file_to_image(game->mlx, "ledder.xpm", &s, &s);
-	img->c = mlx_xpm_file_to_image(game->mlx, "images/css/cs1.xpm", &s, &s);
-	img->e = mlx_xpm_file_to_image(game->mlx, "images/ex.xpm", &s, &s);
+	img->c = mlx_xpm_file_to_image(game->mlx, "images/cs/cs1.xpm", &s, &s);
 	img->m = mlx_xpm_file_to_image(game->mlx, "images/ms/mr1.xpm", &s, &s);
+	img->pc = mlx_xpm_file_to_image(game->mlx, "images/pc.xpm", &s, &s);
+	img->bg = mlx_xpm_file_to_image(game->mlx, "images/bg1.xpm", &s, &s);
+	img->bc = mlx_xpm_file_to_image(game->mlx, "images/ledder.xpm", &s, &s);
+	img->e = mlx_xpm_file_to_image(game->mlx, "images/ex.xpm", &s, &s);
 	img->oe = mlx_xpm_file_to_image(game->mlx, "images/oe.xpm", &s, &s);
 }
 

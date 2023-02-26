@@ -6,7 +6,7 @@
 /*   By: aamhamdi <aamhamdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 11:24:38 by aamhamdi          #+#    #+#             */
-/*   Updated: 2023/02/26 12:06:23 by aamhamdi         ###   ########.fr       */
+/*   Updated: 2023/02/26 12:23:00 by aamhamdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,11 @@ void	ft_init_coins_img(t_coin_imgs *img, t_long *game)
 	int	w;
 
 	w = 64;
-	img->c1 = mlx_xpm_file_to_image(game->mlx, "images/css/cs1.xpm", &w, &w);
-	img->c1 = mlx_xpm_file_to_image(game->mlx, "images/css/cs1.xpm", &w, &w);
-	img->c2 = mlx_xpm_file_to_image(game->mlx, "images/css/cs2.xpm", &w, &w);
-	img->c3 = mlx_xpm_file_to_image(game->mlx, "images/css/cs3.xpm", &w, &w);
-	img->c4 = mlx_xpm_file_to_image(game->mlx, "images/css/cs4.xpm", &w, &w);
-	img->c5 = mlx_xpm_file_to_image(game->mlx, "images/css/cs5.xpm", &w, &w);
-	img->c6 = mlx_xpm_file_to_image(game->mlx, "images/css/cs6.xpm", &w, &w);
+	img->c1 = mlx_xpm_file_to_image(game->mlx, "images/cs/cs1.xpm", &w, &w);
+	img->c1 = mlx_xpm_file_to_image(game->mlx, "images/cs/cs1.xpm", &w, &w);
+	img->c2 = mlx_xpm_file_to_image(game->mlx, "images/cs/cs2.xpm", &w, &w);
+	img->c3 = mlx_xpm_file_to_image(game->mlx, "images/cs/cs3.xpm", &w, &w);
+	img->c4 = mlx_xpm_file_to_image(game->mlx, "images/cs/cs4.xpm", &w, &w);
+	img->c5 = mlx_xpm_file_to_image(game->mlx, "images/cs/cs5.xpm", &w, &w);
+	img->c6 = mlx_xpm_file_to_image(game->mlx, "images/cs/cs6.xpm", &w, &w);
 }
