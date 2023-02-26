@@ -6,7 +6,7 @@
 /*   By: aamhamdi <aamhamdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 16:24:21 by aamhamdi          #+#    #+#             */
-/*   Updated: 2023/02/21 18:26:27 by aamhamdi         ###   ########.fr       */
+/*   Updated: 2023/02/26 16:46:26 by aamhamdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,44 +33,70 @@ typedef struct s_players
 
 typedef struct s_images
 {
-	void	*w;
+	void	*wr;
+	void	*wl;
+	void	*wt;
+	void	*wb;
 	void	*pr;
 	void	*pl;
-	void	*p;
+	void	*pt;
+	void	*pc;
 	void	*c;
 	void	*bg;
-	void	*ex;
+	void	*bc;
+	void	*e;
 	void	*eo;
 }	t_image;
 
 typedef struct so_long
 {
 	void		*mlx;
-	void		*mlx_win;
+	void		*mlx_w;
 	int			win_w;
 	int			win_h;
-	int			exit_x;
-	int			exit_y;
+	int			e_x;
+	int			e_y;
 	int			collects;
 	char		**map;
 	t_item		*coins;
-	t_player	*player;
-	t_image		*images;
+	t_player	*p;
+	t_image		*img;
 	int			s;
 }	t_long;
 
+// read map
 char	**read_map(char *map_file);
+
+// draw map
 void	ft_draw_map(t_long *game);
+void	ft_put_end_screen(t_long *game, char type);
+void	end_game(char type, t_long *game);
+void	ft_draw_background(t_long *game, t_image *img, int x, int y);
+void	ft_draw_walls(t_long *game, t_image *img, int x, int y);
+void	draw_components(char c, t_long *game, int x, int y);
+
+//mouves
 int		move_player(int keycode, t_long *game);
+void	handle_coins(t_long *g, int x, int y, char c);
+void	ft_move_right(t_long *g);
+void	ft_move_left(t_long *g);
+void	ft_move_top(t_long *g);
+void	ft_move_buttom(t_long *g);
+int		ft_close(int keycode, t_long *game, t_image *images);
+
+//parsing
+int		check_valid_path(t_long *game);
+int		check_access_to_coins_and_player(char **map);
+
+// init images
 void	ft_init_images(t_long *game, t_image *images);
+
+// utils
 char	get_val(int x, int y, t_long *game);
 void	set_val(t_long *game, int x, int y, char c);
-
-void	ft_put_end_screen(t_long *game, char type);
 int		ft_str_tablen(char **tabs);
 void	calc_window_size(t_long *game);
+char	**ft_tabdup(char **map);
+void	ft_calc_sizes(int *w, int *h, t_long *g);
 
-int		check_valid_path(t_long *game);
-int		ft_str_tablen(char **tabs);
-void	end_game(char type, t_long *game);
 #endif
