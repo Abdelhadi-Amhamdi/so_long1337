@@ -6,7 +6,7 @@
 /*   By: aamhamdi <aamhamdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 16:24:21 by aamhamdi          #+#    #+#             */
-/*   Updated: 2023/02/26 12:06:47 by aamhamdi         ###   ########.fr       */
+/*   Updated: 2023/02/26 12:15:47 by aamhamdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,30 +87,50 @@ typedef struct s_monster_imgs
 	void	*ml3;
 }	t_monster_imgs;
 
+//read map
 char	**read_map(char *map_file);
+
+//draw map
 void	ft_draw_map(t_long *game);
-int		move_player(int keycode, t_long *game);
-void	ft_init_images(t_long *game, t_image *images);
-char	get_val(int x, int y, t_long *game);
-void	set_val(t_long *game, int x, int y, char c);
-
-void	ft_put_end_screen(t_long *game, char type);
-void	calc_size(t_long *game);
-t_item	*ft_lst_creat(int mx, int my);
-t_item	*last_lst(t_item *items);
-void	ft_lst_add_back(t_item **items, t_item *new_item);
-void	create_item(int mx, int my, t_item **items);
-
 void	ft_draw_background(t_long *game, t_image *img, int x, int y);
 void	ft_draw_player(t_long *game, t_image *img, int x, int y);
 void	ft_draw_coins(t_long *game, t_image *img, int x, int y);
 void	ft_draw_monster(t_long *game, t_image *img, int x, int y);
 void	ft_draw_walls(t_long *game, t_image *img, int x, int y);
 void	ft_draw_exit(t_long *game, t_image *img, int x, int y);
-
-void	monster_animation_x(t_item *monster, t_long *game, t_monster_imgs *img);
-t_item	*get_item(int x, int y, t_long *game);
+void	ft_put_end_screen(t_long *game, char type);
 void	handle_coins(t_long *g, int x, int y, char c);
+
+//mouves
+int		move_player(int keycode, t_long *game);
+void	ft_mouve_buttom(t_long *g, t_image *m);
+void	ft_mouve_top(t_long *g, t_image *m);
+void	ft_mouve_right(t_long *g, t_image *m);
+void	ft_mouve_left(t_long *g, t_image *m);
+
+//imgs initialization
+void	ft_init_images(t_long *game, t_image *images);
 void	ft_init_coins_img(t_coin_imgs *img, t_long *game);
+void	ft_init_monster_images(t_monster_imgs *img, t_long *game);
+
+//utils
+int		ft_strtablen(char **tabs);
+char	get_val(int x, int y, t_long *game);
+void	set_val(t_long *game, int x, int y, char c);
+void	calc_size(t_long *game);
+void	ft_calc_sizes(int *w, int *h, t_long *game);
+t_item	*get_item(int x, int y, t_long *game);
+
+//animation
+int		ft_animation(t_long *game);
+void	ft_monsters_animation(t_long *g, t_monster_imgs *m);
+void	ft_coins_animation(t_long *game, t_coin_imgs *m);
+void	monster_animation_x(t_item *monster, t_long *game, t_monster_imgs *img);
+
+//list
+t_item	*ft_lst_creat(int mx, int my);
+t_item	*last_lst(t_item *items);
+void	ft_lst_add_back(t_item **items, t_item *new_item);
+void	create_item(int mx, int my, t_item **items);
 
 #endif
