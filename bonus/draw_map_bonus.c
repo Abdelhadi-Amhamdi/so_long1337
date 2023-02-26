@@ -6,7 +6,7 @@
 /*   By: aamhamdi <aamhamdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 16:16:46 by aamhamdi          #+#    #+#             */
-/*   Updated: 2023/02/22 20:06:55 by aamhamdi         ###   ########.fr       */
+/*   Updated: 2023/02/26 11:58:44 by aamhamdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,10 @@ t_item	*ft_lst_creat(int mx, int my)
 	m = malloc(sizeof(t_item));
 	if (!m)
 		return (NULL);
-	m->item_x = mx;
-	m->item_y = my;
+	m->x = mx;
+	m->y = my;
 	m->direction = 'r';
+	m->j = 0;
 	m->next = NULL;
 	return (m);
 }
@@ -57,7 +58,7 @@ void	create_item(int mx, int my, t_item **items)
 	ft_lst_add_back(items, item);
 }
 
-void	ft_draw_map(t_long *game, t_image *images)
+void	ft_draw_map(t_long *game)
 {
 	int		x;
 	int		y;
@@ -70,17 +71,17 @@ void	ft_draw_map(t_long *game, t_image *images)
 		while (game->map[y][++x])
 		{
 			if (game->map[y][x] == '1')
-				ft_draw_walls(game, images, x, y);
+				ft_draw_walls(game, game->img, x, y);
 			else if (game->map[y][x] == '0')
-				ft_draw_background(game, images, x, y);
+				ft_draw_background(game, game->img, x, y);
 			else if (game->map[y][x] == 'C')
-				ft_draw_coins(game, images, x, y);
+				ft_draw_coins(game, game->img, x, y);
 			else if (game->map[y][x] == 'P')
-				ft_draw_player(game, images, x, y);
+				ft_draw_player(game, game->img, x, y);
 			else if (game->map[y][x] == 'E')
-				ft_draw_exit(game, images, x, y);
+				ft_draw_exit(game, game->img, x, y);
 			else if (game->map[y][x] == 'M')
-				ft_draw_monster(game, images, x, y);
+				ft_draw_monster(game, game->img, x, y);
 		}
 		y++;
 	}

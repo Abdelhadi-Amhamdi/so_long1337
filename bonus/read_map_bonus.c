@@ -6,7 +6,7 @@
 /*   By: aamhamdi <aamhamdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 15:25:08 by aamhamdi          #+#    #+#             */
-/*   Updated: 2023/02/22 19:33:57 by aamhamdi         ###   ########.fr       */
+/*   Updated: 2023/02/26 10:59:01 by aamhamdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,6 @@ void	ft_draw_exit(t_long *game, t_image *img, int x, int y)
 {
 	mlx_put_image_to_window(game->mlx, game->mlx_w, \
 	img->e, (x * img->size), (y * img->size));
-	game->exit_x = x * img->size;
-	game->exit_y = y * img->size;
+	game->e_x = x * img->size;
+	game->e_y = y * img->size;
 }
