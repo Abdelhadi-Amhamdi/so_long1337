@@ -6,7 +6,7 @@
 /*   By: aamhamdi <aamhamdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 12:06:36 by aamhamdi          #+#    #+#             */
-/*   Updated: 2023/02/26 16:34:39 by aamhamdi         ###   ########.fr       */
+/*   Updated: 2023/02/27 11:54:03 by aamhamdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,13 @@ void	ft_init_images(t_long *game, t_image *img)
 	img->eo = mlx_xpm_file_to_image(game->mlx, "images/oe.xpm", &s, &s);
 }
 
-int	ft_close(int keycode, t_long *game, t_image *images)
-{
-	mlx_destroy_window(game->mlx, game->mlx_w);
-	return (0);
-}
-
 int	main(int ac, char **av)
 {
 	struct so_long	game;
 	struct s_images	images;
 
+	if (!parsing(ac, av[1]))
+		return (0);
 	game.p = malloc(sizeof(t_player));
 	game.map = read_map(av[1]);
 	if (!game.map)

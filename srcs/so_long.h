@@ -6,7 +6,7 @@
 /*   By: aamhamdi <aamhamdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 16:24:21 by aamhamdi          #+#    #+#             */
-/*   Updated: 2023/02/26 16:46:26 by aamhamdi         ###   ########.fr       */
+/*   Updated: 2023/02/27 12:13:10 by aamhamdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ char	**read_map(char *map_file);
 
 // draw map
 void	ft_draw_map(t_long *game);
-void	ft_put_end_screen(t_long *game, char type);
+void	ft_put_end_screen(t_long *game);
 void	end_game(char type, t_long *game);
 void	ft_draw_background(t_long *game, t_image *img, int x, int y);
 void	ft_draw_walls(t_long *game, t_image *img, int x, int y);
@@ -87,6 +87,16 @@ int		ft_close(int keycode, t_long *game, t_image *images);
 //parsing
 int		check_valid_path(t_long *game);
 int		check_access_to_coins_and_player(char **map);
+int		parsing(int ac, char *filename);
+int		check_map_size(int *s);
+char	**ft_read_map(int fd);
+int		*check_all_rows_size(char **map);
+int		check_top_and_bottom(char *top, char *bottom);
+int		check_sides(char **map, int width);
+int		chaeck_valid_map_name(const char *file_name);
+int		check_borders(char **map, int *sizes);
+int		check_map_structure(char **map);
+int		check_items(char **map);
 
 // init images
 void	ft_init_images(t_long *game, t_image *images);
@@ -97,6 +107,7 @@ void	set_val(t_long *game, int x, int y, char c);
 int		ft_str_tablen(char **tabs);
 void	calc_window_size(t_long *game);
 char	**ft_tabdup(char **map);
-void	ft_calc_sizes(int *w, int *h, t_long *g);
+int		ft_calc_sizes(int *w, int *h, t_long *g);
+int		ft_close_game(t_long *game);
 
 #endif
