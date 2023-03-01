@@ -6,7 +6,7 @@
 /*   By: aamhamdi <aamhamdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 16:24:21 by aamhamdi          #+#    #+#             */
-/*   Updated: 2023/02/27 12:13:10 by aamhamdi         ###   ########.fr       */
+/*   Updated: 2023/03/01 12:11:55 by aamhamdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,15 @@ typedef struct s_players
 	int	x;
 	int	y;
 }	t_player;
+
+typedef struct s_parsing_items
+{
+	int	p;
+	int	e;
+	int	c;
+	int	rows;
+	int	index;
+}	t_parsing_items;
 
 typedef struct s_images
 {
@@ -78,10 +87,10 @@ void	draw_components(char c, t_long *game, int x, int y);
 //mouves
 int		move_player(int keycode, t_long *game);
 void	handle_coins(t_long *g, int x, int y, char c);
-void	ft_move_right(t_long *g);
-void	ft_move_left(t_long *g);
-void	ft_move_top(t_long *g);
-void	ft_move_buttom(t_long *g);
+void	ft_move_right(t_long *g, int *mouves);
+void	ft_move_left(t_long *g, int *mouves);
+void	ft_move_top(t_long *g, int *mouves);
+void	ft_move_buttom(t_long *g, int *mouves);
 int		ft_close(int keycode, t_long *game, t_image *images);
 
 //parsing
@@ -97,6 +106,7 @@ int		chaeck_valid_map_name(const char *file_name);
 int		check_borders(char **map, int *sizes);
 int		check_map_structure(char **map);
 int		check_items(char **map);
+int		check_map_items(char **map, t_parsing_items *items);
 
 // init images
 void	ft_init_images(t_long *game, t_image *images);

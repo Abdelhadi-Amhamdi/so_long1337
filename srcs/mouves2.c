@@ -6,13 +6,13 @@
 /*   By: aamhamdi <aamhamdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 16:39:51 by aamhamdi          #+#    #+#             */
-/*   Updated: 2023/02/27 12:12:13 by aamhamdi         ###   ########.fr       */
+/*   Updated: 2023/03/01 11:41:23 by aamhamdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	ft_move_right(t_long *g)
+void	ft_move_right(t_long *g, int *mouves)
 {
 	char	c;
 
@@ -24,13 +24,15 @@ void	ft_move_right(t_long *g)
 		mlx_put_image_to_window(g->mlx, g->mlx_w, g->img->bg, g->p->x, g->p->y);
 		set_val(g, (g->p->x += g->s), (g->p->y), 'P');
 		mlx_put_image_to_window(g->mlx, g->mlx_w, g->img->pr, g->p->x, g->p->y);
-		ft_putendl_fd("right", 1);
+		(*mouves)++;
+		ft_putnbr_fd(*mouves, 1);
+		ft_putchar_fd('\n', 1);
 	}
 	else if (c == 'E' && !g->collects)
 		ft_put_end_screen(g);
 }
 
-void	ft_move_left(t_long *g)
+void	ft_move_left(t_long *g, int *mouves)
 {
 	char	c;
 
@@ -42,13 +44,15 @@ void	ft_move_left(t_long *g)
 		mlx_put_image_to_window(g->mlx, g->mlx_w, g->img->bg, g->p->x, g->p->y);
 		set_val(g, (g->p->x -= g->s), (g->p->y), 'P');
 		mlx_put_image_to_window(g->mlx, g->mlx_w, g->img->pl, g->p->x, g->p->y);
-		ft_putendl_fd("left", 1);
+		(*mouves)++;
+		ft_putnbr_fd(*mouves, 1);
+		ft_putchar_fd('\n', 1);
 	}
 	else if (c == 'E' && !g->collects)
 		ft_put_end_screen(g);
 }
 
-void	ft_move_buttom(t_long *g)
+void	ft_move_buttom(t_long *g, int *mouves)
 {
 	char	c;
 	t_image	*m;
@@ -66,13 +70,15 @@ void	ft_move_buttom(t_long *g)
 			mlx_put_image_to_window(g->mlx, g->mlx_w, m->bg, g->p->x, g->p->y);
 		set_val(g, (g->p->x), (g->p->y += g->s), 'P');
 		mlx_put_image_to_window(g->mlx, g->mlx_w, m->pc, g->p->x, g->p->y);
-		ft_putendl_fd("buttom", 1);
+		(*mouves)++;
+		ft_putnbr_fd(*mouves, 1);
+		ft_putchar_fd('\n', 1);
 	}
 	else if (c == 'E' && !g->collects)
 		ft_put_end_screen(g);
 }
 
-void	ft_move_top(t_long *g)
+void	ft_move_top(t_long *g, int *mouves)
 {
 	char	c;
 	t_image	*m;
@@ -90,7 +96,9 @@ void	ft_move_top(t_long *g)
 			mlx_put_image_to_window(g->mlx, g->mlx_w, m->bg, g->p->x, g->p->y);
 		set_val(g, (g->p->x), (g->p->y -= g->s), 'P');
 		mlx_put_image_to_window(g->mlx, g->mlx_w, m->pc, g->p->x, g->p->y);
-		ft_putendl_fd("top", 1);
+		(*mouves)++;
+		ft_putnbr_fd(*mouves, 1);
+		ft_putchar_fd('\n', 1);
 	}
 	else if (c == 'E' && !g->collects)
 		ft_put_end_screen(g);

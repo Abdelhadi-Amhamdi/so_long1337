@@ -6,7 +6,7 @@
 /*   By: aamhamdi <aamhamdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 11:21:04 by aamhamdi          #+#    #+#             */
-/*   Updated: 2023/02/27 12:05:27 by aamhamdi         ###   ########.fr       */
+/*   Updated: 2023/03/01 12:11:22 by aamhamdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,38 +62,19 @@ int	check_map_structure(char **map)
 
 int	check_items(char **map)
 {
-	int	p;
-	int	e;
-	int	c;
-	int	index;
-	int	rows;
+	t_parsing_items	items;
 
-	rows = 0;
-	p = 0;
-	e = 0;
-	c = 0;
-	while (map[rows])
-	{
-		index = 0;
-		while (map[rows][index])
-		{
-			if (map[rows][index] == 'P')
-				p++;
-			else if (map[rows][index] == 'C')
-				c++;
-			else if (map[rows][index] == 'E')
-				e++;
-			else if (map[rows][index] != '1' && map[rows][index] != '0' && map[rows][index] != 'M')
-				return (-3);
-			index++;
-		}
-		rows++;
-	}
-	if (p != 1)
+	items.rows = 0;
+	items.p = 0;
+	items.e = 0;
+	items.c = 0;
+	if (!check_map_items(map, &items))
+		return (-3);
+	if (items.p != 1)
 		return (0);
-	else if (e != 1)
+	else if (items.e != 1)
 		return (-1);
-	else if (c < 1)
+	else if (items.c < 1)
 		return (-2);
 	return (1);
 }
