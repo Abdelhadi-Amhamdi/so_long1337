@@ -6,7 +6,7 @@
 /*   By: aamhamdi <aamhamdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 16:24:21 by aamhamdi          #+#    #+#             */
-/*   Updated: 2023/03/01 12:11:55 by aamhamdi         ###   ########.fr       */
+/*   Updated: 2023/03/02 10:19:09 by aamhamdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,6 @@
 # include "../libft/libft.h"
 # include "../gnl/get_next_line.h"
 # include <mlx.h>
-
-typedef struct s_items
-{
-	int				item_x;
-	int				item_y;
-	char			direction;
-	struct s_items	*next;
-}	t_item;
 
 typedef struct s_players
 {
@@ -67,7 +59,6 @@ typedef struct so_long
 	int			e_y;
 	int			collects;
 	char		**map;
-	t_item		*coins;
 	t_player	*p;
 	t_image		*img;
 	int			s;
@@ -117,7 +108,7 @@ void	set_val(t_long *game, int x, int y, char c);
 int		ft_str_tablen(char **tabs);
 void	calc_window_size(t_long *game);
 char	**ft_tabdup(char **map);
-int		ft_calc_sizes(int *w, int *h, t_long *g);
+// int		ft_calc_sizes(int *w, int *h, t_long *g);
 int		ft_close_game(t_long *game);
 
 #endif
