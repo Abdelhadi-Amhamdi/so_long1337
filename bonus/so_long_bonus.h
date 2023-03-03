@@ -6,7 +6,7 @@
 /*   By: aamhamdi <aamhamdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 16:24:21 by aamhamdi          #+#    #+#             */
-/*   Updated: 2023/02/26 12:15:47 by aamhamdi         ###   ########.fr       */
+/*   Updated: 2023/03/03 22:21:51 by aamhamdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,15 @@ typedef struct s_images
 	void	*oe;
 	int		size;
 }	t_image;
+
+typedef struct s_parsing_items
+{
+	int	p;
+	int	e;
+	int	c;
+	int	rows;
+	int	index;
+}	t_parsing_items;
 
 typedef struct s_items
 {
@@ -65,6 +74,7 @@ typedef struct so_long
 	int			e_y;
 	int			collects_n;
 	char		**map;
+	int			moves;
 }	t_long;
 
 typedef struct s_coin_imgs
@@ -107,6 +117,7 @@ void	ft_mouve_buttom(t_long *g, t_image *m);
 void	ft_mouve_top(t_long *g, t_image *m);
 void	ft_mouve_right(t_long *g, t_image *m);
 void	ft_mouve_left(t_long *g, t_image *m);
+void	handle_enmey_touch_and_exit(char item, t_long *g);
 
 //imgs initialization
 void	ft_init_images(t_long *game, t_image *images);
@@ -120,6 +131,8 @@ void	set_val(t_long *game, int x, int y, char c);
 void	calc_size(t_long *game);
 void	ft_calc_sizes(int *w, int *h, t_long *game);
 t_item	*get_item(int x, int y, t_long *game);
+void	get_player_position(t_long *game);
+void	ft_init(t_long *game);
 
 //animation
 int		ft_animation(t_long *game);
@@ -132,5 +145,21 @@ t_item	*ft_lst_creat(int mx, int my);
 t_item	*last_lst(t_item *items);
 void	ft_lst_add_back(t_item **items, t_item *new_item);
 void	create_item(int mx, int my, t_item **items);
+
+// parsing
+int		parsing(int ac, char *filename);
+int		check_map_size(int *s);
+char	**ft_read_map(int fd);
+int		*check_all_rows_size(char **map);
+int		check_top_and_bottom(char *top, char *bottom);
+int		check_sides(char **map, int width);
+int		check_borders(char **map, int *sizes);
+
+// check_valid_path
+char	**ft_tab_dup(char **tab);
+void	fill_all_paths(char **map, int x, int y);
+int		check_all_coins_and_exit_access(char **map);
+void	ft_free(char **tabs);
+int		check_for_valid_path(char **map, int start_x, int start_y);
 
 #endif

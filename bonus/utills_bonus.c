@@ -6,7 +6,7 @@
 /*   By: aamhamdi <aamhamdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 19:34:33 by aamhamdi          #+#    #+#             */
-/*   Updated: 2023/02/26 12:25:24 by aamhamdi         ###   ########.fr       */
+/*   Updated: 2023/03/02 13:56:51 by aamhamdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,29 +71,7 @@ void	ft_calc_sizes(int *w, int *h, t_long *game)
 
 void	ft_put_end_screen(t_long *game, char type)
 {
-	int		w;
-	int		h;
-	void	*wm;
-	t_item	*monsters;
-
-	monsters = game->monsters;
-	ft_calc_sizes(&w, &h, game);
-	if (type == 'E')
-	{
-		wm = mlx_xpm_file_to_image(game->mlx, "images/end/win-lg.xpm", &w, &h);
-		printf("you win !!!.\n");
-	}
-	else
-	{
-		wm = mlx_xpm_file_to_image(game->mlx, "images/end/over-lg.xpm", &w, &h);
-		printf("you die !!!.\n");
-	}
-	while (monsters)
-	{
-		monsters->direction = 'a';
-		monsters = monsters->next;
-	}
-	mlx_clear_window(game->mlx, game->mlx_w);
-	mlx_put_image_to_window(game->mlx, game->mlx_w, wm, \
-	((game->w_w / 2) - w / 2), ((game->w_h / 2) - h / 2));
+	ft_putendl_fd("you die !!!.", 1);
+	mlx_destroy_window(game->mlx, game->mlx_w);
+	exit(0);
 }

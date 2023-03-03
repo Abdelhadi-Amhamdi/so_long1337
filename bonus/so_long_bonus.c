@@ -6,7 +6,7 @@
 /*   By: aamhamdi <aamhamdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 19:34:09 by aamhamdi          #+#    #+#             */
-/*   Updated: 2023/02/26 12:06:18 by aamhamdi         ###   ########.fr       */
+/*   Updated: 2023/03/03 22:20:35 by aamhamdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,19 +32,19 @@ void	ft_coins_animation(t_long *game, t_coin_imgs *m)
 	static int	j;
 
 	c = game->coins;
-	while (c && (i % 150 == 0) && c->direction == 'r')
+	while (c && (i % 150 == 0))
 	{
-		if (j == 0)
+		if (j == 0 && c->direction == 'r')
 			mlx_put_image_to_window(game->mlx, game->mlx_w, m->c1, c->x, c->y);
-		else if (j == 1)
+		else if (j == 1 && c->direction == 'r')
 			mlx_put_image_to_window(game->mlx, game->mlx_w, m->c2, c->x, c->y);
-		else if (j == 2)
+		else if (j == 2 && c->direction == 'r')
 			mlx_put_image_to_window(game->mlx, game->mlx_w, m->c3, c->x, c->y);
-		else if (j == 3)
+		else if (j == 3 && c->direction == 'r')
 			mlx_put_image_to_window(game->mlx, game->mlx_w, m->c4, c->x, c->y);
-		else if (j == 4)
+		else if (j == 4 && c->direction == 'r')
 			mlx_put_image_to_window(game->mlx, game->mlx_w, m->c5, c->x, c->y);
-		else if (j == 5)
+		else if (j == 5 && c->direction == 'r')
 			mlx_put_image_to_window(game->mlx, game->mlx_w, m->c6, c->x, c->y);
 		if (j == 6)
 			j = 0;
@@ -60,7 +60,7 @@ void	ft_monsters_animation(t_long *g, t_monster_imgs *m)
 	t_item		*e;
 
 	e = g->monsters;
-	while (e && (i % 500 == 0))
+	while (e && (i % 300 == 0))
 	{
 		if (e->direction == 'r')
 		{
@@ -100,16 +100,18 @@ int	main(int ac, char **av)
 	t_long		game;
 	t_image		images;
 
+	ft_init(&game);
 	game.p = malloc(sizeof(t_player));
 	if (!game.p)
 		return (0);
-	game.p->x = 0;
-	game.p->y = 0;
-	game.monsters = NULL;
-	game.coins = NULL;
+	if (parsing(ac, av[1]) != 1)
+		return (0);
 	game.map = read_map(av[1]);
 	if (!game.map)
 		return (0);
+	get_player_position(&game);
+	if (!check_for_valid_path(game.map, game.p->x, game.p->y))
+		return (ft_putendl_fd("Error", 1), 0);
 	calc_size(&game);
 	game.mlx = mlx_init();
 	game.mlx_w = mlx_new_window(game.mlx, game.w_w, game.w_h, "so_long!");

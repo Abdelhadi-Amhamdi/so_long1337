@@ -6,7 +6,7 @@
 /*   By: aamhamdi <aamhamdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 16:16:46 by aamhamdi          #+#    #+#             */
-/*   Updated: 2023/02/26 11:58:44 by aamhamdi         ###   ########.fr       */
+/*   Updated: 2023/03/03 21:19:03 by aamhamdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ void	ft_draw_map(t_long *game)
 	int		y;
 
 	y = 0;
-	game->collects_n = 0;
 	while (game->map[y])
 	{
 		x = -1;

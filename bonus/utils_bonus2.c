@@ -6,7 +6,7 @@
 /*   By: aamhamdi <aamhamdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 11:24:38 by aamhamdi          #+#    #+#             */
-/*   Updated: 2023/02/26 12:23:00 by aamhamdi         ###   ########.fr       */
+/*   Updated: 2023/03/03 20:54:19 by aamhamdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ t_item	*get_item(int x, int y, t_long *game)
 void	handle_coins(t_long *g, int x, int y, char c)
 {
 	t_item	*item;
+	char	*data;
 
 	if (c == 'C')
 	{
@@ -50,6 +51,12 @@ void	handle_coins(t_long *g, int x, int y, char c)
 			mlx_put_image_to_window(g->mlx, g->mlx_w, \
 			g->img->oe, g->e_x, g->e_y);
 	}
+	g->moves++;
+	data = ft_itoa(g->moves);
+	mlx_put_image_to_window(g->mlx, g->mlx_w, g->img->wt, 0, 0);
+	mlx_string_put(g->mlx, g->mlx_w, 20, 10, 0XFFFFFF, data);
+	ft_putnbr_fd(g->moves, 1);
+	ft_putchar_fd('\n', 1);
 }
 
 void	ft_init_coins_img(t_coin_imgs *img, t_long *game)
