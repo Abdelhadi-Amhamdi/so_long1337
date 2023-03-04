@@ -6,7 +6,7 @@
 /*   By: aamhamdi <aamhamdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 16:39:51 by aamhamdi          #+#    #+#             */
-/*   Updated: 2023/03/01 11:41:23 by aamhamdi         ###   ########.fr       */
+/*   Updated: 2023/03/04 09:29:48 by aamhamdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_move_right(t_long *g, int *mouves)
 	c = get_val((g->p->x + g->s), g->p->y, g);
 	if (c != '1' && c != 'E')
 	{
-		handle_coins(g, g->p->x + 64, g->p->y, c);
+		handle_coins(g, c);
 		set_val(g, (g->p->x), (g->p->y), '0');
 		mlx_put_image_to_window(g->mlx, g->mlx_w, g->img->bg, g->p->x, g->p->y);
 		set_val(g, (g->p->x += g->s), (g->p->y), 'P');
@@ -39,7 +39,7 @@ void	ft_move_left(t_long *g, int *mouves)
 	c = get_val((g->p->x - g->s), g->p->y, g);
 	if (c != '1' && c != 'E')
 	{
-		handle_coins(g, g->p->x - 64, g->p->y, c);
+		handle_coins(g, c);
 		set_val(g, (g->p->x), (g->p->y), '0');
 		mlx_put_image_to_window(g->mlx, g->mlx_w, g->img->bg, g->p->x, g->p->y);
 		set_val(g, (g->p->x -= g->s), (g->p->y), 'P');
@@ -61,7 +61,7 @@ void	ft_move_buttom(t_long *g, int *mouves)
 	c = get_val(g->p->x, (g->p->y + g->s), g);
 	if (c != '1' && c != 'E')
 	{
-		handle_coins(g, g->p->x, g->p->y + 64, c);
+		handle_coins(g, c);
 		set_val(g, (g->p->x), (g->p->y), '0');
 		if (get_val(g->p->x + 64, g->p->y, g) == '1' && \
 		get_val(g->p->x - 64, g->p->y, g) == '1' && ((g->p->y / 64) - 1 != 0))
@@ -87,7 +87,7 @@ void	ft_move_top(t_long *g, int *mouves)
 	c = get_val((g->p->x), (g->p->y - g->s), g);
 	if (c != '1' && c != 'E')
 	{
-		handle_coins(g, g->p->x, g->p->y - 64, c);
+		handle_coins(g, c);
 		set_val(g, (g->p->x), (g->p->y), '0');
 		if ((get_val(g->p->x + 64, g->p->y, g) == '1' && get_val(g->p->x - 64, \
 		g->p->y, g) == '1') && ((g->p->y / 64) + 2 != g->win_h / 64))

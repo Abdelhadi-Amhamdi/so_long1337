@@ -6,7 +6,7 @@
 /*   By: aamhamdi <aamhamdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 21:12:45 by aamhamdi          #+#    #+#             */
-/*   Updated: 2023/03/03 21:14:50 by aamhamdi         ###   ########.fr       */
+/*   Updated: 2023/03/04 16:00:29 by aamhamdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ char	**ft_read_map(int fd)
 {
 	char	*line;
 	char	*map;
+	char	**tabs;
 
 	map = calloc(1, 1);
 	line = get_next_line(fd);
@@ -32,7 +33,8 @@ char	**ft_read_map(int fd)
 		free(line);
 		line = get_next_line(fd);
 	}
-	return (ft_split(map, '\n'));
+	tabs = ft_split(map, '\n');
+	return (free(map), tabs);
 }
 
 int	*check_all_rows_size(char **map)
@@ -44,7 +46,7 @@ int	*check_all_rows_size(char **map)
 	sizes[1] = 0;
 	while (*map)
 	{
-		if (ft_strlen(*map) != sizes[0])
+		if ((int)ft_strlen(*map) != sizes[0])
 			return (0);
 		map++;
 		sizes[1]++;

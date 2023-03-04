@@ -6,7 +6,7 @@
 /*   By: aamhamdi <aamhamdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 19:34:09 by aamhamdi          #+#    #+#             */
-/*   Updated: 2023/03/03 22:20:35 by aamhamdi         ###   ########.fr       */
+/*   Updated: 2023/03/04 14:38:15 by aamhamdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,9 +104,7 @@ int	main(int ac, char **av)
 	game.p = malloc(sizeof(t_player));
 	if (!game.p)
 		return (0);
-	if (parsing(ac, av[1]) != 1)
-		return (0);
-	game.map = read_map(av[1]);
+	game.map = parsing(ac, av[1]);
 	if (!game.map)
 		return (0);
 	get_player_position(&game);

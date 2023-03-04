@@ -6,7 +6,7 @@
 /*   By: aamhamdi <aamhamdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 15:25:08 by aamhamdi          #+#    #+#             */
-/*   Updated: 2023/03/03 21:16:26 by aamhamdi         ###   ########.fr       */
+/*   Updated: 2023/03/04 16:03:02 by aamhamdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ char	**read_map(char *map_file)
 {
 	char	*map;
 	char	*line;
+	char	**tabs;
 	int		fd;
 
 	map = ft_calloc(1, 1);
@@ -27,7 +28,8 @@ char	**read_map(char *map_file)
 		free(line);
 		line = get_next_line(fd);
 	}
-	return (ft_split(map, '\n'));
+	tabs = ft_split(map, '\n');
+	return (free(map), tabs);
 }
 
 void	ft_draw_exit(t_long *game, t_image *img, int x, int y)
@@ -55,6 +57,8 @@ void	handle_enmey_touch_and_exit(char item, t_long *g)
 		ft_putendl_fd("you win !!", 1);
 	if (item == 'M' || item == 'E' || item == 'e')
 	{
+		ft_free(g->map);
+		free(g->p);
 		mlx_destroy_window(g->mlx, g->mlx_w);
 		exit(0);
 	}

@@ -6,7 +6,7 @@
 /*   By: aamhamdi <aamhamdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 16:24:21 by aamhamdi          #+#    #+#             */
-/*   Updated: 2023/03/03 22:21:51 by aamhamdi         ###   ########.fr       */
+/*   Updated: 2023/03/04 16:03:22 by aamhamdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,15 @@
 # include "../libft/libft.h"
 # include "../gnl/get_next_line.h"
 # include <mlx.h>
+
+# define INVALID_ARGS_NUMBER "expected 1 args 0 founded"
+# define INVLIDE_MAP_NAME "expected .ber map format"
+# define INVALID_FILE "file does not exist"
+# define INVALID_MAP_SIZE "invalid map size"
+# define INVALID_MAP_STRUCTURE "invalid map structure"
+# define PLAYER_ERROR "player not founded or more than one"
+# define EXIT_ERROR "exit not founded or more than one"
+# define COINS_ERROR "at least one collectable required"
 
 typedef struct s_images
 {
@@ -108,7 +117,7 @@ void	ft_draw_coins(t_long *game, t_image *img, int x, int y);
 void	ft_draw_monster(t_long *game, t_image *img, int x, int y);
 void	ft_draw_walls(t_long *game, t_image *img, int x, int y);
 void	ft_draw_exit(t_long *game, t_image *img, int x, int y);
-void	ft_put_end_screen(t_long *game, char type);
+void	ft_put_end_screen(t_long *game);
 void	handle_coins(t_long *g, int x, int y, char c);
 
 //mouves
@@ -147,13 +156,14 @@ void	ft_lst_add_back(t_item **items, t_item *new_item);
 void	create_item(int mx, int my, t_item **items);
 
 // parsing
-int		parsing(int ac, char *filename);
+char	**parsing(int ac, char *filename);
 int		check_map_size(int *s);
 char	**ft_read_map(int fd);
 int		*check_all_rows_size(char **map);
 int		check_top_and_bottom(char *top, char *bottom);
 int		check_sides(char **map, int width);
 int		check_borders(char **map, int *sizes);
+void	ft_print_error(int status);
 
 // check_valid_path
 char	**ft_tab_dup(char **tab);

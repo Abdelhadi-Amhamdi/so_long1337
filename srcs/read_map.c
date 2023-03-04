@@ -6,7 +6,7 @@
 /*   By: aamhamdi <aamhamdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 15:25:08 by aamhamdi          #+#    #+#             */
-/*   Updated: 2023/03/02 10:29:11 by aamhamdi         ###   ########.fr       */
+/*   Updated: 2023/03/04 14:23:07 by aamhamdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ char	**read_map(char *map_file)
 {
 	char	*map;
 	char	*line;
+	char	**tabs;
 	int		fd;
 
 	map = ft_calloc(1, 1);
@@ -27,7 +28,8 @@ char	**read_map(char *map_file)
 		free(line);
 		line = get_next_line(fd);
 	}
-	return (ft_split(map, '\n'));
+	tabs = ft_split(map, '\n');
+	return (free(map), tabs);
 }
 
 int	check_map_items(char **map, t_parsing_items *items)
@@ -51,4 +53,18 @@ int	check_map_items(char **map, t_parsing_items *items)
 		items->rows++;
 	}
 	return (1);
+}
+
+void	ft_print_error(int status)
+{
+	if (!status)
+		ft_putendl_fd(PLAYER_ERROR, 2);
+	else if (status == 2)
+		ft_putendl_fd(INVALID_MAP_STRUCTURE, 2);
+	else if (status == -1)
+		ft_putendl_fd(EXIT_ERROR, 2);
+	else if (status == -2)
+		ft_putendl_fd(COINS_ERROR, 2);
+	else if (status == -3)
+		ft_putendl_fd("Error", 2);
 }
