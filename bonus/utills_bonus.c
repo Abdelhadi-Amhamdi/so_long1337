@@ -6,7 +6,7 @@
 /*   By: aamhamdi <aamhamdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 19:34:33 by aamhamdi          #+#    #+#             */
-/*   Updated: 2023/03/04 09:36:12 by aamhamdi         ###   ########.fr       */
+/*   Updated: 2023/03/06 11:00:28 by aamhamdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,17 @@ void	ft_calc_sizes(int *w, int *h, t_long *game)
 	}
 }
 
-void	ft_put_end_screen(t_long *game)
+void	ft_free_list(t_item *item)
 {
-	ft_putendl_fd("you die !!!.", 1);
-	mlx_destroy_window(game->mlx, game->mlx_w);
-	exit(0);
+	t_item	*tmp;
+	t_item	*next;
+
+	tmp = item;
+	while (tmp)
+	{
+		next = tmp->next;
+		free(tmp);
+		tmp = NULL;
+		tmp = next;
+	}
 }

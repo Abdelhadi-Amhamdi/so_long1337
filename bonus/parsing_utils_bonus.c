@@ -6,7 +6,7 @@
 /*   By: aamhamdi <aamhamdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 21:12:45 by aamhamdi          #+#    #+#             */
-/*   Updated: 2023/03/04 16:00:29 by aamhamdi         ###   ########.fr       */
+/*   Updated: 2023/03/06 12:09:14 by aamhamdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,24 +17,6 @@ int	check_map_size(int *s)
 	if (s[0] < s[1])
 		return (0);
 	return (1);
-}
-
-char	**ft_read_map(int fd)
-{
-	char	*line;
-	char	*map;
-	char	**tabs;
-
-	map = calloc(1, 1);
-	line = get_next_line(fd);
-	while (line)
-	{
-		map = ft_strjoin(map, line);
-		free(line);
-		line = get_next_line(fd);
-	}
-	tabs = ft_split(map, '\n');
-	return (free(map), tabs);
 }
 
 int	*check_all_rows_size(char **map)

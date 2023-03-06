@@ -6,7 +6,7 @@
 /*   By: aamhamdi <aamhamdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 10:22:42 by aamhamdi          #+#    #+#             */
-/*   Updated: 2023/03/04 16:02:42 by aamhamdi         ###   ########.fr       */
+/*   Updated: 2023/03/06 12:05:14 by aamhamdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ char	**parsing(int ac, char *filename)
 	int		status;
 	int		items_s;
 
-	if (ac < 2)
+	if (ac != 2)
 		return (ft_putendl_fd(INVALID_ARGS_NUMBER, 2), NULL);
 	status = chaeck_valid_map_name(filename);
 	if (status == -2)
@@ -99,7 +99,7 @@ char	**parsing(int ac, char *filename)
 	else if (status == -1)
 		return (ft_putendl_fd(INVALID_FILE, 2), NULL);
 	map = ft_read_map(status);
-	if (!check_map_structure(map))
+	if (!map || !check_map_structure(map))
 	{
 		ft_free(map);
 		return (ft_print_error(2), NULL);

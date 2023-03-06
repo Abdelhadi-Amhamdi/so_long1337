@@ -6,7 +6,7 @@
 #    By: aamhamdi <aamhamdi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/03 22:34:29 by aamhamdi          #+#    #+#              #
-#    Updated: 2023/03/04 16:10:39 by aamhamdi         ###   ########.fr        #
+#    Updated: 2023/03/06 12:17:09 by aamhamdi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,13 +58,13 @@ FLAGS = -Wall -Wextra -Werror
 
 all: $(OBJ_PATH) $(NAME)
 
-$(OBJ_PATH)%.o: $(B_PATH)%.c
+$(OBJ_PATH)%.o: $(B_PATH)%.c $(B_PATH)$(SRCSB_H)
 	$(CC) $(FLAGS) -c $< -o $@
 	
-$(OBJ_PATH)%.o: $(M_PATH)%.c
+$(OBJ_PATH)%.o: $(M_PATH)%.c $(M_PATH)$(SRCS_H)
 	$(CC) $(FLAGS) -c $< -o $@
 	
-$(OBJ_PATH)%.o: $(G_PATH)%.c
+$(OBJ_PATH)%.o: $(G_PATH)%.c $(G_PATH)$(GNL_H)
 	$(CC) $(FLAGS) -c $< -o $@
 	
 $(OBJ_PATH):

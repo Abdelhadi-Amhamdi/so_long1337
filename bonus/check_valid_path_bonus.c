@@ -6,7 +6,7 @@
 /*   By: aamhamdi <aamhamdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 10:23:36 by aamhamdi          #+#    #+#             */
-/*   Updated: 2023/03/03 22:22:34 by aamhamdi         ###   ########.fr       */
+/*   Updated: 2023/03/06 12:05:28 by aamhamdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ void	ft_free(char **tabs)
 {
 	int	index;
 
+	if (!tabs)
+		return ;
 	index = 0;
 	while (tabs[index])
 	{

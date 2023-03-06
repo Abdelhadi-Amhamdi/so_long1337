@@ -6,7 +6,7 @@
 /*   By: aamhamdi <aamhamdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 16:24:21 by aamhamdi          #+#    #+#             */
-/*   Updated: 2023/03/04 16:03:22 by aamhamdi         ###   ########.fr       */
+/*   Updated: 2023/03/06 12:17:26 by aamhamdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ typedef struct s_monster_imgs
 }	t_monster_imgs;
 
 //read map
-char	**read_map(char *map_file);
+char	**ft_read_map(int fd);
 
 //draw map
 void	ft_draw_map(t_long *game);
@@ -117,7 +117,6 @@ void	ft_draw_coins(t_long *game, t_image *img, int x, int y);
 void	ft_draw_monster(t_long *game, t_image *img, int x, int y);
 void	ft_draw_walls(t_long *game, t_image *img, int x, int y);
 void	ft_draw_exit(t_long *game, t_image *img, int x, int y);
-void	ft_put_end_screen(t_long *game);
 void	handle_coins(t_long *g, int x, int y, char c);
 
 //mouves
@@ -142,6 +141,7 @@ void	ft_calc_sizes(int *w, int *h, t_long *game);
 t_item	*get_item(int x, int y, t_long *game);
 void	get_player_position(t_long *game);
 void	ft_init(t_long *game);
+void	ft_free_list(t_item *item);
 
 //animation
 int		ft_animation(t_long *game);

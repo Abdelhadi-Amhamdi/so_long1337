@@ -6,24 +6,26 @@
 /*   By: aamhamdi <aamhamdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 15:25:08 by aamhamdi          #+#    #+#             */
-/*   Updated: 2023/03/04 14:23:07 by aamhamdi         ###   ########.fr       */
+/*   Updated: 2023/03/06 11:58:59 by aamhamdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-char	**read_map(char *map_file)
+char	**ft_read_map(int fd)
 {
-	char	*map;
 	char	*line;
+	char	*map;
 	char	**tabs;
-	int		fd;
 
-	map = ft_calloc(1, 1);
-	fd = open(map_file, O_RDONLY);
+	map = calloc(1, 1);
+	if (!map)
+		return (0);
 	line = get_next_line(fd);
 	while (line)
 	{
+		if (*line == '\n')
+			return (0);
 		map = ft_strjoin(map, line);
 		free(line);
 		line = get_next_line(fd);

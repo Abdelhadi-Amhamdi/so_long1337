@@ -6,7 +6,7 @@
 /*   By: aamhamdi <aamhamdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 21:47:49 by aamhamdi          #+#    #+#             */
-/*   Updated: 2023/03/04 14:36:40 by aamhamdi         ###   ########.fr       */
+/*   Updated: 2023/03/06 11:02:04 by aamhamdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ft_monster_to_left(t_item *ms, t_long *g, t_monster_imgs *m)
 {
 	if (get_val(ms->x - 64, ms->y, g) == 'P')
-		ft_put_end_screen(g);
+		handle_enmey_touch_and_exit('M', g);
 	set_val(g, (ms->x), (ms->y), '0');
 	mlx_put_image_to_window(g->mlx, g->mlx_w, g->img->bg, (ms->x), (ms->y));
 	ms->x -= 64;
@@ -26,7 +26,7 @@ void	ft_monster_to_left(t_item *ms, t_long *g, t_monster_imgs *m)
 void	ft_monster_to_right(t_item *ms, t_long *g, t_monster_imgs *m)
 {
 	if (get_val(ms->x + 64, ms->y, g) == 'P')
-		ft_put_end_screen(g);
+		handle_enmey_touch_and_exit('M', g);
 	set_val(g, (ms->x), (ms->y), '0');
 	mlx_put_image_to_window(g->mlx, g->mlx_w, g->img->bg, ms->x, ms->y);
 	ms->x += 64;

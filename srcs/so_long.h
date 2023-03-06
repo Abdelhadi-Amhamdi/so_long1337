@@ -6,7 +6,7 @@
 /*   By: aamhamdi <aamhamdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 16:24:21 by aamhamdi          #+#    #+#             */
-/*   Updated: 2023/03/04 14:24:14 by aamhamdi         ###   ########.fr       */
+/*   Updated: 2023/03/06 12:15:48 by aamhamdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ typedef struct so_long
 }	t_long;
 
 // read map
-char	**read_map(char *map_file);
+char	**ft_read_map(int fd);
 
 // draw map
 void	ft_draw_map(t_long *game);
@@ -98,7 +98,6 @@ int		check_valid_path(t_long *game);
 int		check_access_to_coins_and_player(char **map);
 char	**parsing(int ac, char *filename);
 int		check_map_size(int *s);
-char	**ft_read_map(int fd);
 int		*check_all_rows_size(char **map);
 int		check_top_and_bottom(char *top, char *bottom);
 int		check_sides(char **map, int width);

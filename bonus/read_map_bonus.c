@@ -6,24 +6,24 @@
 /*   By: aamhamdi <aamhamdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 15:25:08 by aamhamdi          #+#    #+#             */
-/*   Updated: 2023/03/04 16:03:02 by aamhamdi         ###   ########.fr       */
+/*   Updated: 2023/03/06 12:09:21 by aamhamdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-char	**read_map(char *map_file)
+char	**ft_read_map(int fd)
 {
-	char	*map;
 	char	*line;
+	char	*map;
 	char	**tabs;
-	int		fd;
 
-	map = ft_calloc(1, 1);
-	fd = open(map_file, O_RDONLY);
+	map = calloc(1, 1);
 	line = get_next_line(fd);
 	while (line)
 	{
+		if (*line == '\n')
+			return (NULL);
 		map = ft_strjoin(map, line);
 		free(line);
 		line = get_next_line(fd);
@@ -59,6 +59,8 @@ void	handle_enmey_touch_and_exit(char item, t_long *g)
 	{
 		ft_free(g->map);
 		free(g->p);
+		ft_free_list(g->monsters);
+		ft_free_list(g->coins);
 		mlx_destroy_window(g->mlx, g->mlx_w);
 		exit(0);
 	}

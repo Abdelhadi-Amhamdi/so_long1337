@@ -6,11 +6,12 @@
 /*   By: aamhamdi <aamhamdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 12:06:36 by aamhamdi          #+#    #+#             */
-/*   Updated: 2023/03/04 14:15:06 by aamhamdi         ###   ########.fr       */
+/*   Updated: 2023/03/06 11:14:26 by aamhamdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+#include "libc.h"
 
 void	ft_init_images(t_long *game, t_image *img)
 {
