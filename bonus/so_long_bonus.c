@@ -6,7 +6,7 @@
 /*   By: aamhamdi <aamhamdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 19:34:09 by aamhamdi          #+#    #+#             */
-/*   Updated: 2023/03/04 14:38:15 by aamhamdi         ###   ########.fr       */
+/*   Updated: 2023/03/06 13:18:14 by aamhamdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ int	main(int ac, char **av)
 	game.img = &images;
 	ft_draw_map(&game);
 	mlx_hook(game.mlx_w, 2, (1L << 0), move_player, &game);
+	mlx_hook(game.mlx_w, 17, 0, ft_close_window, &game);
 	mlx_loop_hook(game.mlx, ft_animation, &game);
 	mlx_loop(game.mlx);
 	return (0);

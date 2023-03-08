@@ -6,7 +6,7 @@
 /*   By: aamhamdi <aamhamdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 16:24:21 by aamhamdi          #+#    #+#             */
-/*   Updated: 2023/03/06 12:15:48 by aamhamdi         ###   ########.fr       */
+/*   Updated: 2023/03/07 12:13:18 by aamhamdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@
 # include "../gnl/get_next_line.h"
 # include <mlx.h>
 
-# define INVALID_ARGS_NUMBER "expected 1 args 0 founded"
-# define INVLIDE_MAP_NAME "expected .ber map format"
-# define INVALID_FILE "file does not exist"
-# define INVALID_MAP_SIZE "invalid map size"
-# define INVALID_MAP_STRUCTURE "invalid map structure"
-# define PLAYER_ERROR "player not founded or more than one"
-# define EXIT_ERROR "exit not founded or more than one"
-# define COINS_ERROR "at least one collectable required"
+# define INVALID_ARGS_NUMBER "Error : expected 1 args 0 or more founded"
+# define INVLIDE_MAP_NAME "Error : expected .ber map format"
+# define INVALID_FILE "Error : file does not exist"
+# define INVALID_MAP_SIZE "Error : invalid map size"
+# define INVALID_MAP_STRUCTURE "Error : invalid map structure"
+# define PLAYER_ERROR "Error : player not founded or more than one"
+# define EXIT_ERROR "Error : exit not founded or more than one"
+# define COINS_ERROR "Error : at least one collectable required"
 
 typedef struct s_players
 {
@@ -78,7 +78,7 @@ char	**ft_read_map(int fd);
 
 // draw map
 void	ft_draw_map(t_long *game);
-void	ft_put_end_screen(t_long *game);
+void	ft_close_window(t_long *game, char action);
 void	end_game(char type, t_long *game);
 void	ft_draw_background(t_long *game, t_image *img, int x, int y);
 void	ft_draw_walls(t_long *game, t_image *img, int x, int y);
@@ -91,7 +91,7 @@ void	ft_move_right(t_long *g, int *mouves);
 void	ft_move_left(t_long *g, int *mouves);
 void	ft_move_top(t_long *g, int *mouves);
 void	ft_move_buttom(t_long *g, int *mouves);
-int		ft_close(int keycode, t_long *game, t_image *images);
+// int		ft_close(int keycode, t_long *game, t_image *images);
 
 //parsing
 int		check_valid_path(t_long *game);
@@ -118,6 +118,6 @@ void	set_val(t_long *game, int x, int y, char c);
 int		ft_str_tablen(char **tabs);
 void	calc_window_size(t_long *game);
 char	**ft_tabdup(char **map);
-int		ft_close_game(t_long *game);
+// int		ft_close_game(t_long *game);
 
 #endif

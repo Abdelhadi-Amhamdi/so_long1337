@@ -6,7 +6,7 @@
 /*   By: aamhamdi <aamhamdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 21:12:45 by aamhamdi          #+#    #+#             */
-/*   Updated: 2023/03/06 12:09:14 by aamhamdi         ###   ########.fr       */
+/*   Updated: 2023/03/06 13:18:03 by aamhamdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,11 @@ int	check_sides(char **map, int width)
 			return (0);
 		index++;
 	}
+	return (1);
+}
+
+int	ft_close_window(t_long *g)
+{
+	handle_enmey_touch_and_exit('e', g);
 	return (1);
 }

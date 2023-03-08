@@ -6,7 +6,7 @@
 /*   By: aamhamdi <aamhamdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 16:39:51 by aamhamdi          #+#    #+#             */
-/*   Updated: 2023/03/04 09:29:48 by aamhamdi         ###   ########.fr       */
+/*   Updated: 2023/03/07 12:08:35 by aamhamdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ft_move_right(t_long *g, int *mouves)
 		ft_putchar_fd('\n', 1);
 	}
 	else if (c == 'E' && !g->collects)
-		ft_put_end_screen(g);
+		ft_close_window(g, c);
 }
 
 void	ft_move_left(t_long *g, int *mouves)
@@ -49,7 +49,7 @@ void	ft_move_left(t_long *g, int *mouves)
 		ft_putchar_fd('\n', 1);
 	}
 	else if (c == 'E' && !g->collects)
-		ft_put_end_screen(g);
+		ft_close_window(g, c);
 }
 
 void	ft_move_buttom(t_long *g, int *mouves)
@@ -75,7 +75,7 @@ void	ft_move_buttom(t_long *g, int *mouves)
 		ft_putchar_fd('\n', 1);
 	}
 	else if (c == 'E' && !g->collects)
-		ft_put_end_screen(g);
+		ft_close_window(g, c);
 }
 
 void	ft_move_top(t_long *g, int *mouves)
@@ -101,5 +101,5 @@ void	ft_move_top(t_long *g, int *mouves)
 		ft_putchar_fd('\n', 1);
 	}
 	else if (c == 'E' && !g->collects)
-		ft_put_end_screen(g);
+		ft_close_window(g, c);
 }

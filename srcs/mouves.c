@@ -6,7 +6,7 @@
 /*   By: aamhamdi <aamhamdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 14:57:07 by aamhamdi          #+#    #+#             */
-/*   Updated: 2023/03/06 11:57:40 by aamhamdi         ###   ########.fr       */
+/*   Updated: 2023/03/08 15:27:45 by aamhamdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	move_player(int keycode, t_long *g)
 	else if (keycode == 125 || keycode == 1)
 		ft_move_buttom(g, &mouves);
 	else if (keycode == 53)
-		ft_put_end_screen(g);
+		ft_close_window(g, 'e');
 	if (!g->collects)
 		mlx_put_image_to_window(g->mlx, g->mlx_w, g->img->eo, g->e_x, g->e_y);
 	return (1);
@@ -55,8 +55,10 @@ void	ft_destroy_all(t_image *img, t_long *g)
 	mlx_destroy_image(g->mlx, img->wl);
 }
 
-void	ft_put_end_screen(t_long *g)
+void	ft_close_window(t_long *g, char action)
 {
+	if (action == 'E')
+		ft_putendl_fd("you win !!", 1);
 	free(g->p);
 	ft_free(g->map);
 	ft_destroy_all(g->img, g);

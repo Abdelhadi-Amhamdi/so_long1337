@@ -6,7 +6,7 @@
 /*   By: aamhamdi <aamhamdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 10:22:42 by aamhamdi          #+#    #+#             */
-/*   Updated: 2023/03/06 12:05:14 by aamhamdi         ###   ########.fr       */
+/*   Updated: 2023/03/08 16:04:05 by aamhamdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ int	chaeck_valid_map_name(const char *file_name)
 
 	s = ft_strlen(file_name);
 	fd = open(file_name, O_RDONLY);
-	if (s < 4 || ft_strncmp(file_name + (s - 4), ".ber", 4))
+	if (s < 4 || ft_strncmp(file_name + (s - 4), \
+	".ber", 4) || file_name[s - 5] == '/')
 		return (-2);
 	else if (fd == -1)
 		return (-1);

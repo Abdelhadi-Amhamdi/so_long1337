@@ -6,7 +6,7 @@
 /*   By: aamhamdi <aamhamdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 12:06:36 by aamhamdi          #+#    #+#             */
-/*   Updated: 2023/03/06 11:14:26 by aamhamdi         ###   ########.fr       */
+/*   Updated: 2023/03/07 12:13:58 by aamhamdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,12 @@ void	ft_init_images(t_long *game, t_image *img)
 	img->eo = mlx_xpm_file_to_image(game->mlx, "images/oe.xpm", &s, &s);
 }
 
+int	close_window(t_long *g)
+{
+	ft_close_window(g, 'e');
+	return (1);
+}
+
 int	main(int ac, char **av)
 {
 	struct so_long	game;
@@ -53,6 +59,7 @@ int	main(int ac, char **av)
 	if (!check_valid_path(&game))
 		return (ft_putendl_fd("invalid map!!", 2), 0);
 	mlx_hook(game.mlx_w, 2, (1L << 0), move_player, &game);
+	mlx_hook(game.mlx_w, 17, 0, close_window, &game);
 	mlx_loop(game.mlx);
 	return (0);
 }
