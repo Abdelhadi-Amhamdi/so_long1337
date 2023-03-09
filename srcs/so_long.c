@@ -6,7 +6,7 @@
 /*   By: aamhamdi <aamhamdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 12:06:36 by aamhamdi          #+#    #+#             */
-/*   Updated: 2023/03/07 12:13:58 by aamhamdi         ###   ########.fr       */
+/*   Updated: 2023/03/09 15:22:50 by aamhamdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,15 +50,16 @@ int	main(int ac, char **av)
 	game.p = malloc(sizeof(t_player));
 	if (!game.p)
 		return (0);
+	get_player_position(&game);
+	if (!check_valid_path(&game))
+		return (ft_putendl_fd("invalid map!!", 2), 0);
 	calc_window_size(&game);
 	game.mlx = mlx_init();
 	game.mlx_w = mlx_new_window(game.mlx, game.win_w, game.win_h, "GAME");
 	ft_init_images(&game, &images);
 	game.img = &images;
 	ft_draw_map(&game);
-	if (!check_valid_path(&game))
-		return (ft_putendl_fd("invalid map!!", 2), 0);
-	mlx_hook(game.mlx_w, 2, (1L << 0), move_player, &game);
+	mlx_hook(game.mlx_w, 2, 0, move_player, &game);
 	mlx_hook(game.mlx_w, 17, 0, close_window, &game);
 	mlx_loop(game.mlx);
 	return (0);

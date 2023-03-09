@@ -6,7 +6,7 @@
 /*   By: aamhamdi <aamhamdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 16:16:46 by aamhamdi          #+#    #+#             */
-/*   Updated: 2023/03/04 13:32:10 by aamhamdi         ###   ########.fr       */
+/*   Updated: 2023/03/09 15:24:16 by aamhamdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,7 @@ void	draw_components(char c, t_long *game, int x, int y)
 		mlx_put_image_to_window(game->mlx, game->mlx_w, game->img->c, x, y);
 	}
 	else if (c == 'P')
-	{
 		mlx_put_image_to_window(game->mlx, game->mlx_w, game->img->pr, x, y);
-		game->p->x = x;
-		game->p->y = y;
-	}
 	else if (c == 'E')
 	{
 		mlx_put_image_to_window(game->mlx, game->mlx_w, game->img->e, x, y);

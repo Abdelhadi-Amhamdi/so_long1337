@@ -6,7 +6,7 @@
 /*   By: aamhamdi <aamhamdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 14:57:07 by aamhamdi          #+#    #+#             */
-/*   Updated: 2023/03/08 15:27:45 by aamhamdi         ###   ########.fr       */
+/*   Updated: 2023/03/09 15:19:42 by aamhamdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	handle_coins(t_long *g, char c)
 {
-	if (c == 'C' && !g->collects--)
+	if (c == 'C' && !(--g->collects))
 		mlx_put_image_to_window(g->mlx, g->mlx_w, g->img->eo, g->e_x, g->e_y);
 }
 

@@ -6,7 +6,7 @@
 /*   By: aamhamdi <aamhamdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 16:24:21 by aamhamdi          #+#    #+#             */
-/*   Updated: 2023/03/07 12:13:18 by aamhamdi         ###   ########.fr       */
+/*   Updated: 2023/03/09 15:22:32 by aamhamdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,7 @@ void	set_val(t_long *game, int x, int y, char c);
 int		ft_str_tablen(char **tabs);
 void	calc_window_size(t_long *game);
 char	**ft_tabdup(char **map);
+void	get_player_position(t_long *game);
 // int		ft_close_game(t_long *game);
 
 #endif
