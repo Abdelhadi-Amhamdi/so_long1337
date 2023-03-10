@@ -6,7 +6,7 @@
 /*   By: aamhamdi <aamhamdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 11:24:38 by aamhamdi          #+#    #+#             */
-/*   Updated: 2023/03/10 11:13:04 by aamhamdi         ###   ########.fr       */
+/*   Updated: 2023/03/10 13:23:32 by aamhamdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	handle_coins(t_long *g, int x, int y, char c)
 	data = ft_itoa(g->moves);
 	mlx_put_image_to_window(g->mlx, g->mlx_w, g->img->wt, 0, 0);
 	mlx_string_put(g->mlx, g->mlx_w, 20, 10, 0XFFFFFF, data);
+	free(data);
 	ft_putnbr_fd(g->moves, 1);
 	ft_putchar_fd('\n', 1);
 }
