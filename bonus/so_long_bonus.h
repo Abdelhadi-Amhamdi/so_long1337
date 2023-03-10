@@ -6,7 +6,7 @@
 /*   By: aamhamdi <aamhamdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 16:24:21 by aamhamdi          #+#    #+#             */
-/*   Updated: 2023/03/06 13:16:58 by aamhamdi         ###   ########.fr       */
+/*   Updated: 2023/03/09 20:32:27 by aamhamdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@
 # include "../gnl/get_next_line.h"
 # include <mlx.h>
 
-# define INVALID_ARGS_NUMBER "Error : expected 1 args 0 or more founded"
-# define INVLIDE_MAP_NAME "Error : expected .ber map format"
-# define INVALID_FILE "Error : file does not exist"
-# define INVALID_MAP_SIZE "Error : invalid map size"
-# define INVALID_MAP_STRUCTURE "Error : invalid map structure"
-# define PLAYER_ERROR "Error : player not founded or more than one"
-# define EXIT_ERROR "Error : exit not founded or more than one"
-# define COINS_ERROR "Error : at least one collectable required"
+# define INVALID_ARGS_NUMBER "Error\nexpected 1 args 0 or more founded"
+# define INVLIDE_MAP_NAME "Error\nexpected .ber map format"
+# define INVALID_FILE "Error\nfile does not exist"
+# define INVALID_MAP_SIZE "Error\ninvalid map size"
+# define INVALID_MAP_STRUCTURE "Error\ninvalid map structure"
+# define PLAYER_ERROR "Error\nplayer not founded or more than one"
+# define EXIT_ERROR "Error\nexit not founded or more than one"
+# define COINS_ERROR "Error\nat least one collectable required"
 
 typedef struct s_images
 {
@@ -50,6 +50,7 @@ typedef struct s_parsing_items
 	int	p;
 	int	e;
 	int	c;
+	int	m;
 	int	rows;
 	int	index;
 }	t_parsing_items;

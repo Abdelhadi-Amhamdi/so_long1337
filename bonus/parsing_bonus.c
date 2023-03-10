@@ -6,7 +6,7 @@
 /*   By: aamhamdi <aamhamdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 10:22:42 by aamhamdi          #+#    #+#             */
-/*   Updated: 2023/03/08 16:04:05 by aamhamdi         ###   ########.fr       */
+/*   Updated: 2023/03/09 20:34:40 by aamhamdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,10 @@ int	check_map_items(char **map, t_parsing_items *items)
 				items->c++;
 			else if (map[items->rows][items->index] == 'E')
 				items->e++;
+			else if (map[items->rows][items->index] == 'M')
+				items->m++;
 			else if (map[items->rows][items->index] != '1' && \
-			map[items->rows][items->index] != '0' \
-			&& map[items->rows][items->index] != 'M')
+			map[items->rows][items->index] != '0')
 				return (0);
 			items->index++;
 		}
@@ -44,7 +45,7 @@ int	chaeck_valid_map_name(const char *file_name)
 	s = ft_strlen(file_name);
 	fd = open(file_name, O_RDONLY);
 	if (s < 4 || ft_strncmp(file_name + (s - 4), \
-	".ber", 4) || file_name[s - 5] == '/')
+	".ber", 4))
 		return (-2);
 	else if (fd == -1)
 		return (-1);
@@ -75,14 +76,17 @@ int	check_items(char **map)
 	items.p = 0;
 	items.e = 0;
 	items.c = 0;
+	items.m = 0;
 	if (!check_map_items(map, &items))
 		return (-3);
-	if (items.p != 1)
+	else if (items.p != 1)
 		return (0);
 	else if (items.e != 1)
 		return (-1);
 	else if (items.c < 1)
 		return (-2);
+	else if (items.m < 1)
+		return (-4);
 	return (1);
 }
 
@@ -106,7 +110,7 @@ char	**parsing(int ac, char *filename)
 		return (ft_print_error(2), NULL);
 	}
 	items_s = check_items(map);
-	if (!items_s || items_s == -1 || items_s == -2 || items_s == -3)
+	if (items_s <= 0)
 	{
 		ft_free(map);
 		return (ft_print_error(items_s), NULL);

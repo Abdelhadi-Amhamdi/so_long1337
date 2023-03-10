@@ -6,7 +6,7 @@
 /*   By: aamhamdi <aamhamdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 19:34:09 by aamhamdi          #+#    #+#             */
-/*   Updated: 2023/03/09 15:14:44 by aamhamdi         ###   ########.fr       */
+/*   Updated: 2023/03/10 10:26:49 by aamhamdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ int	main(int ac, char **av)
 		return (0);
 	get_player_position(&game);
 	if (!check_for_valid_path(game.map, game.p->x, game.p->y))
-		return (ft_putendl_fd("Error", 1), 0);
+		return (ft_putendl_fd("Error\ninvalid map", 1), 0);
 	calc_size(&game);
 	game.mlx = mlx_init();
 	game.mlx_w = mlx_new_window(game.mlx, game.w_w, game.w_h, "so_long!");

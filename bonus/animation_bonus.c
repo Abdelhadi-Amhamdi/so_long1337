@@ -6,7 +6,7 @@
 /*   By: aamhamdi <aamhamdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 21:47:49 by aamhamdi          #+#    #+#             */
-/*   Updated: 2023/03/06 11:02:04 by aamhamdi         ###   ########.fr       */
+/*   Updated: 2023/03/09 20:33:52 by aamhamdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,7 @@ void	ft_print_error(int status)
 	else if (status == -2)
 		ft_putendl_fd(COINS_ERROR, 2);
 	else if (status == -3)
-		ft_putendl_fd("Error", 2);
+		ft_putendl_fd("Error\ninvalid charachter founded", 2);
+	else if (status == -4)
+		ft_putendl_fd("Error\nat least one monster required", 2);
 }

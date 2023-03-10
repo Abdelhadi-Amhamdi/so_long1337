@@ -6,7 +6,7 @@
 /*   By: aamhamdi <aamhamdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 12:06:36 by aamhamdi          #+#    #+#             */
-/*   Updated: 2023/03/09 15:22:50 by aamhamdi         ###   ########.fr       */
+/*   Updated: 2023/03/10 10:26:19 by aamhamdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	main(int ac, char **av)
 		return (0);
 	get_player_position(&game);
 	if (!check_valid_path(&game))
-		return (ft_putendl_fd("invalid map!!", 2), 0);
+		return (ft_putendl_fd("Error\ninvalid map!!", 2), 0);
 	calc_window_size(&game);
 	game.mlx = mlx_init();
 	game.mlx_w = mlx_new_window(game.mlx, game.win_w, game.win_h, "GAME");

@@ -6,7 +6,7 @@
 #    By: aamhamdi <aamhamdi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/03 22:34:29 by aamhamdi          #+#    #+#              #
-#    Updated: 2023/03/08 19:17:14 by aamhamdi         ###   ########.fr        #
+#    Updated: 2023/03/10 10:24:09 by aamhamdi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,26 +48,28 @@ FLAGS = -Wall -Wextra -Werror
 
 all: $(OBJ_PATH) $(NAME)
 
-$(OBJ_PATH)%.o: $(B_PATH)%.c $(B_PATH)$(SRCSB_H)
+$(OBJ_PATH)%.o:  $(M_PATH)%.c $(M_PATH)$(SRCS_H)
 	$(CC) $(FLAGS) -c $< -o $@
-	
-$(OBJ_PATH)%.o: $(M_PATH)%.c $(M_PATH)$(SRCS_H)
-	$(CC) $(FLAGS) -c $< -o $@
-	
-$(OBJ_PATH)%.o: $(G_PATH)%.c $(G_PATH)$(GNL_H)
-	$(CC) $(FLAGS) -c $< -o $@
-	
-$(OBJ_PATH):
-	mkdir $(OBJ_PATH)
 
-$(LIBFT):
+$(OBJ_PATH)%.o:  $(B_PATH)%.c $(B_PATH)$(SRCSB_H) 
+	$(CC) $(FLAGS) -c $< -o $@
+
+$(OBJ_PATH)%.o:  $(G_PATH)%.c $(G_PATH)$(GNL_H)
+	$(CC) $(FLAGS) -c $< -o $@
+
+$(OBJ_PATH):
+	@mkdir $(OBJ_PATH)
+
+$(LIBFT_PATH)$(LIBFT):
 	@make -s -C $(LIBFT_PATH)
 
-$(NAME): $(OBJS) $(OBJS_G) $(LIBFT)
-	@$(CC) $(FLAGS) $(LIBS) $(OBJS) $(OBJS_G) $(LIBFT_PATH)$(LIBFT) -o $(NAME)
-	
-bonus: $(OBJ_PATH) $(OBJS_B) $(OBJS_G) $(LIBFT) 
-	@$(CC) $(FLAGS) $(LIBS) $(OBJS_B) $(OBJS_G) $(LIBFT_PATH)$(LIBFT) -o $(BONUS_NAME)
+$(NAME): $(OBJS) $(OBJS_G) $(LIBFT_PATH)$(LIBFT) 
+	$(CC) $(FLAGS) $(LIBS) $^ -o $@
+
+bonus: $(OBJ_PATH) $(BONUS_NAME)
+
+$(BONUS_NAME) : $(OBJS_B) $(OBJS_G) $(LIBFT_PATH)$(LIBFT)
+	$(CC) $(FLAGS) $(LIBS) $^ -o $@
 
 clean:
 	rm -rf $(OBJ_PATH)
@@ -75,5 +77,6 @@ clean:
 
 fclean: clean
 	rm -f $(NAME) $(BONUS_NAME)
-	
+	@make fclean -s -C $(LIBFT_PATH)
+
 re: fclean all
