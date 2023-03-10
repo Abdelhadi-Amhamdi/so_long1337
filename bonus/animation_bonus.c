@@ -6,13 +6,13 @@
 /*   By: aamhamdi <aamhamdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 21:47:49 by aamhamdi          #+#    #+#             */
-/*   Updated: 2023/03/09 20:33:52 by aamhamdi         ###   ########.fr       */
+/*   Updated: 2023/03/10 11:59:23 by aamhamdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-void	ft_monster_to_left(t_item *ms, t_long *g, t_monster_imgs *m)
+void	ft_monster_to_left(t_item *ms, t_long *g, t_m_imgs *m)
 {
 	if (get_val(ms->x - 64, ms->y, g) == 'P')
 		handle_enmey_touch_and_exit('M', g);
@@ -23,7 +23,7 @@ void	ft_monster_to_left(t_item *ms, t_long *g, t_monster_imgs *m)
 	mlx_put_image_to_window(g->mlx, g->mlx_w, m->ml1, ms->x, ms->y);
 }
 
-void	ft_monster_to_right(t_item *ms, t_long *g, t_monster_imgs *m)
+void	ft_monster_to_right(t_item *ms, t_long *g, t_m_imgs *m)
 {
 	if (get_val(ms->x + 64, ms->y, g) == 'P')
 		handle_enmey_touch_and_exit('M', g);
@@ -34,7 +34,7 @@ void	ft_monster_to_right(t_item *ms, t_long *g, t_monster_imgs *m)
 	mlx_put_image_to_window(g->mlx, g->mlx_w, m->mr2, ms->x, ms->y);
 }
 
-void	monster_animation_x(t_item *ms, t_long *g, t_monster_imgs *m)
+void	monster_animation_x(t_item *ms, t_long *g, t_m_imgs *m)
 {
 	if (ms->direction == 'r')
 	{
@@ -62,7 +62,9 @@ void	ft_init(t_long *game)
 	game->monsters = NULL;
 	game->moves = 0;
 	game->collects_n = 0;
-	game->p = NULL;
+	game->p = malloc(sizeof(t_player));
+	game->c_img = NULL;
+	game->m_img = NULL;
 }
 
 void	ft_print_error(int status)

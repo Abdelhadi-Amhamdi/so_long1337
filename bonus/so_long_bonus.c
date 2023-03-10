@@ -6,13 +6,13 @@
 /*   By: aamhamdi <aamhamdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 19:34:09 by aamhamdi          #+#    #+#             */
-/*   Updated: 2023/03/10 10:26:49 by aamhamdi         ###   ########.fr       */
+/*   Updated: 2023/03/10 12:54:59 by aamhamdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-void	ft_init_monster_images(t_monster_imgs *img, t_long *game)
+void	ft_init_monster_images(t_m_imgs *img, t_long *game)
 {
 	int	w;
 
@@ -25,14 +25,14 @@ void	ft_init_monster_images(t_monster_imgs *img, t_long *game)
 	img->ml3 = mlx_xpm_file_to_image(game->mlx, "images/ms/ml3.xpm", &w, &w);
 }
 
-void	ft_coins_animation(t_long *game, t_coin_imgs *m)
+void	ft_coins_animation(t_long *game, t_c_imgs *m)
 {
 	t_item		*c;
 	static int	i;
 	static int	j;
 
 	c = game->coins;
-	while (c && (i % 150 == 0))
+	while (c && (i % 1500 == 0))
 	{
 		if (j == 0 && c->direction == 'r')
 			mlx_put_image_to_window(game->mlx, game->mlx_w, m->c1, c->x, c->y);
@@ -54,13 +54,13 @@ void	ft_coins_animation(t_long *game, t_coin_imgs *m)
 	i++;
 }
 
-void	ft_monsters_animation(t_long *g, t_monster_imgs *m)
+void	ft_monsters_animation(t_long *g, t_m_imgs *m)
 {
 	static int	i;
 	t_item		*e;
 
 	e = g->monsters;
-	while (e && (i % 300 == 0))
+	while (e && (i % 3000 == 0))
 	{
 		if (e->direction == 'r')
 		{
@@ -85,13 +85,8 @@ void	ft_monsters_animation(t_long *g, t_monster_imgs *m)
 
 int	ft_animation(t_long *game)
 {
-	t_monster_imgs	m_img;
-	t_coin_imgs		c_img;
-
-	ft_init_monster_images(&m_img, game);
-	ft_init_coins_img(&c_img, game);
-	ft_coins_animation(game, &c_img);
-	ft_monsters_animation(game, &m_img);
+	ft_coins_animation(game, game->c_img);
+	ft_monsters_animation(game, game->m_img);
 	return (0);
 }
 
@@ -99,22 +94,22 @@ int	main(int ac, char **av)
 {
 	t_long		game;
 	t_image		images;
+	t_m_imgs	m_img;
+	t_c_imgs	c_img;
 
-	ft_init(&game);
-	game.p = malloc(sizeof(t_player));
-	if (!game.p)
-		return (0);
 	game.map = parsing(ac, av[1]);
 	if (!game.map)
 		return (0);
-	get_player_position(&game);
-	if (!check_for_valid_path(game.map, game.p->x, game.p->y))
+	ft_init(&game);
+	if (!game.p)
+		return (ft_free(game.map), 0);
+	if (!check_for_valid_path(&game))
 		return (ft_putendl_fd("Error\ninvalid map", 1), 0);
 	calc_size(&game);
 	game.mlx = mlx_init();
 	game.mlx_w = mlx_new_window(game.mlx, game.w_w, game.w_h, "so_long!");
-	ft_init_images(&game, &images);
-	game.img = &images;
+	if (!ft_init_images(&game, &images, &c_img, &m_img))
+		return (ft_free(game.map), 0);
 	ft_draw_map(&game);
 	mlx_hook(game.mlx_w, 2, 0, move_player, &game);
 	mlx_hook(game.mlx_w, 17, 0, ft_close_window, &game);

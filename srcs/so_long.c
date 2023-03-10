@@ -6,14 +6,14 @@
 /*   By: aamhamdi <aamhamdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 12:06:36 by aamhamdi          #+#    #+#             */
-/*   Updated: 2023/03/10 10:26:19 by aamhamdi         ###   ########.fr       */
+/*   Updated: 2023/03/10 12:56:41 by aamhamdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 #include "libc.h"
 
-void	ft_init_images(t_long *game, t_image *img)
+int	ft_init_images(t_long *game, t_image *img)
 {
 	int	s;
 
@@ -31,12 +31,17 @@ void	ft_init_images(t_long *game, t_image *img)
 	img->bc = mlx_xpm_file_to_image(game->mlx, "images/ledder.xpm", &s, &s);
 	img->e = mlx_xpm_file_to_image(game->mlx, "images/ex.xpm", &s, &s);
 	img->eo = mlx_xpm_file_to_image(game->mlx, "images/oe.xpm", &s, &s);
+	if (!img->wt || !img->wb || !img->wl || !img->wr \
+	|| !img->pr || !img->pl || !img->pt \
+	|| !img->c || !img->pc || !img->bg || !img->bc || !img->e || !img->eo)
+		return (free(game->p), 0);
+	return (1);
 }
 
 int	close_window(t_long *g)
 {
 	ft_close_window(g, 'e');
-	return (1);
+	return (0);
 }
 
 int	main(int ac, char **av)
@@ -49,14 +54,15 @@ int	main(int ac, char **av)
 		return (0);
 	game.p = malloc(sizeof(t_player));
 	if (!game.p)
-		return (0);
+		return (ft_free(game.map), 0);
 	get_player_position(&game);
 	if (!check_valid_path(&game))
 		return (ft_putendl_fd("Error\ninvalid map!!", 2), 0);
 	calc_window_size(&game);
 	game.mlx = mlx_init();
 	game.mlx_w = mlx_new_window(game.mlx, game.win_w, game.win_h, "GAME");
-	ft_init_images(&game, &images);
+	if (!ft_init_images(&game, &images))
+		return (ft_free(game.map), 0);
 	game.img = &images;
 	ft_draw_map(&game);
 	mlx_hook(game.mlx_w, 2, 0, move_player, &game);

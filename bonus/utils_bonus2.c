@@ -6,7 +6,7 @@
 /*   By: aamhamdi <aamhamdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 11:24:38 by aamhamdi          #+#    #+#             */
-/*   Updated: 2023/03/07 11:23:49 by aamhamdi         ###   ########.fr       */
+/*   Updated: 2023/03/10 11:13:04 by aamhamdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	handle_coins(t_long *g, int x, int y, char c)
 	ft_putchar_fd('\n', 1);
 }
 
-void	ft_init_coins_img(t_coin_imgs *img, t_long *game)
+void	ft_init_coins_img(t_c_imgs *img, t_long *game)
 {
 	int	w;
 

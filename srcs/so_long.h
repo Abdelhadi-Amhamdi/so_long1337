@@ -6,7 +6,7 @@
 /*   By: aamhamdi <aamhamdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 16:24:21 by aamhamdi          #+#    #+#             */
-/*   Updated: 2023/03/10 10:25:16 by aamhamdi         ###   ########.fr       */
+/*   Updated: 2023/03/10 12:48:53 by aamhamdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ void	ft_free(char **data);
 void	ft_print_error(int status);
 
 // init images
-void	ft_init_images(t_long *game, t_image *images);
+int		ft_init_images(t_long *game, t_image *img);
 
 // utils
 char	get_val(int x, int y, t_long *game);

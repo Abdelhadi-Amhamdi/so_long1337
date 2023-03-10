@@ -6,7 +6,7 @@
 /*   By: aamhamdi <aamhamdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 15:25:08 by aamhamdi          #+#    #+#             */
-/*   Updated: 2023/03/06 12:09:21 by aamhamdi         ###   ########.fr       */
+/*   Updated: 2023/03/10 11:38:20 by aamhamdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void	handle_enmey_touch_and_exit(char item, t_long *g)
 		free(g->p);
 		ft_free_list(g->monsters);
 		ft_free_list(g->coins);
+		ft_destroy_all(g->img, g);
 		mlx_destroy_window(g->mlx, g->mlx_w);
 		exit(0);
 	}

@@ -6,7 +6,7 @@
 /*   By: aamhamdi <aamhamdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 16:45:41 by aamhamdi          #+#    #+#             */
-/*   Updated: 2023/03/06 12:04:55 by aamhamdi         ###   ########.fr       */
+/*   Updated: 2023/03/10 12:57:03 by aamhamdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,9 +88,18 @@ int	check_valid_path(t_long *game)
 
 	dup_map = ft_tabdup(game->map);
 	if (!dup_map)
+	{
+		ft_free(game->map);
+		free(game->p);
 		return (0);
+	}
 	check_path(dup_map, game->p->x / 64, game->p->y / 64);
 	if (!check_access_to_coins_and_player(dup_map))
-		return (ft_free(dup_map), 0);
+	{
+		ft_free(game->map);
+		free(game->p);
+		ft_free(dup_map);
+		return (0);
+	}
 	return (ft_free(dup_map), 1);
 }

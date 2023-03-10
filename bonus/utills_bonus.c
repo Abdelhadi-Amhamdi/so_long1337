@@ -6,7 +6,7 @@
 /*   By: aamhamdi <aamhamdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 19:34:33 by aamhamdi          #+#    #+#             */
-/*   Updated: 2023/03/06 11:00:28 by aamhamdi         ###   ########.fr       */
+/*   Updated: 2023/03/10 12:52:05 by aamhamdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ void	calc_size(t_long *game)
 	game->w_h = (ft_strtablen(game->map) * 64);
 }
 
-void	ft_init_images(t_long *game, t_image *img)
+int	ft_init_images(t_long *game, t_image *img, \
+t_c_imgs *c_img, t_m_imgs *m_img)
 {
 	int	s;
 
@@ -40,33 +41,19 @@ void	ft_init_images(t_long *game, t_image *img)
 	img->wr = mlx_xpm_file_to_image(game->mlx, "images/wall/wall2.xpm", &s, &s);
 	img->pr = mlx_xpm_file_to_image(game->mlx, "images/player/pr.xpm", &s, &s);
 	img->pl = mlx_xpm_file_to_image(game->mlx, "images/player/pl.xpm", &s, &s);
-	img->p = mlx_xpm_file_to_image(game->mlx, "images/player/pt.xpm", &s, &s);
-	img->c = mlx_xpm_file_to_image(game->mlx, "images/cs/cs1.xpm", &s, &s);
-	img->m = mlx_xpm_file_to_image(game->mlx, "images/ms/mr1.xpm", &s, &s);
 	img->pc = mlx_xpm_file_to_image(game->mlx, "images/pc.xpm", &s, &s);
 	img->bg = mlx_xpm_file_to_image(game->mlx, "images/bg1.xpm", &s, &s);
 	img->bc = mlx_xpm_file_to_image(game->mlx, "images/ledder.xpm", &s, &s);
 	img->e = mlx_xpm_file_to_image(game->mlx, "images/ex.xpm", &s, &s);
 	img->oe = mlx_xpm_file_to_image(game->mlx, "images/oe.xpm", &s, &s);
-}
-
-void	ft_calc_sizes(int *w, int *h, t_long *game)
-{
-	if (game->w_w >= 849 && game->w_h >= 512)
-	{
-		*w = 849;
-		*h = 512;
-	}
-	else if (game->w_w >= 664 && game->w_h >= 320)
-	{
-		*w = 664;
-		*h = 320;
-	}
-	else
-	{
-		*w = 375;
-		*h = 192;
-	}
+	ft_init_monster_images(m_img, game);
+	ft_init_coins_img(c_img, game);
+	game->c_img = c_img;
+	game->m_img = m_img;
+	game->img = img;
+	if (!check_all_imgs(game))
+		return (free(game->p), 0);
+	return (1);
 }
 
 void	ft_free_list(t_item *item)
@@ -82,4 +69,31 @@ void	ft_free_list(t_item *item)
 		tmp = NULL;
 		tmp = next;
 	}
+}
+
+void	ft_destroy_all(t_image *img, t_long *g)
+{
+	mlx_destroy_image(g->mlx, img->bc);
+	mlx_destroy_image(g->mlx, img->bg);
+	mlx_destroy_image(g->mlx, img->e);
+	mlx_destroy_image(g->mlx, img->oe);
+	mlx_destroy_image(g->mlx, img->pc);
+	mlx_destroy_image(g->mlx, img->pl);
+	mlx_destroy_image(g->mlx, img->pr);
+	mlx_destroy_image(g->mlx, img->wb);
+	mlx_destroy_image(g->mlx, img->wt);
+	mlx_destroy_image(g->mlx, img->wr);
+	mlx_destroy_image(g->mlx, img->wl);
+	mlx_destroy_image(g->mlx, g->c_img->c1);
+	mlx_destroy_image(g->mlx, g->c_img->c2);
+	mlx_destroy_image(g->mlx, g->c_img->c3);
+	mlx_destroy_image(g->mlx, g->c_img->c4);
+	mlx_destroy_image(g->mlx, g->c_img->c5);
+	mlx_destroy_image(g->mlx, g->c_img->c6);
+	mlx_destroy_image(g->mlx, g->m_img->ml1);
+	mlx_destroy_image(g->mlx, g->m_img->ml2);
+	mlx_destroy_image(g->mlx, g->m_img->ml3);
+	mlx_destroy_image(g->mlx, g->m_img->mr1);
+	mlx_destroy_image(g->mlx, g->m_img->mr2);
+	mlx_destroy_image(g->mlx, g->m_img->mr3);
 }

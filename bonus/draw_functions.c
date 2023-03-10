@@ -6,7 +6,7 @@
 /*   By: aamhamdi <aamhamdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 19:32:18 by aamhamdi          #+#    #+#             */
-/*   Updated: 2023/03/03 20:43:46 by aamhamdi         ###   ########.fr       */
+/*   Updated: 2023/03/10 12:17:25 by aamhamdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,15 @@ void	ft_draw_coins(t_long *game, t_image *img, int x, int y)
 
 	s = img->size;
 	game->collects_n++;
-	mlx_put_image_to_window(game->mlx, game->mlx_w, img->c, x * s, y * s);
+	mlx_put_image_to_window(game->mlx, game->mlx_w, \
+	game->c_img->c1, x * s, y * s);
 	create_item(x * game->img->size, y * game->img->size, &game->coins);
 }
 
 void	ft_draw_monster(t_long *game, t_image *img, int x, int y)
 {
 	mlx_put_image_to_window(game->mlx, game->mlx_w, \
-	img->m, (x * img->size), (y * img->size));
+	game->m_img->mr1, (x * img->size), (y * img->size));
 	create_item(x * game->img->size, y * game->img->size, &game->monsters);
 }
 

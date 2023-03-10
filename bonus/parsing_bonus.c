@@ -6,7 +6,7 @@
 /*   By: aamhamdi <aamhamdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 10:22:42 by aamhamdi          #+#    #+#             */
-/*   Updated: 2023/03/09 20:34:40 by aamhamdi         ###   ########.fr       */
+/*   Updated: 2023/03/10 12:01:54 by aamhamdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	check_map_structure(char **map)
 	s = check_all_rows_size(map);
 	if (!s)
 		return (0);
-	if (!check_map_size(s))
+	if (s[0] == s[1])
 		return (free(s), 0);
 	if (!check_borders(map, s))
 		return (free(s), 0);

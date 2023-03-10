@@ -6,7 +6,7 @@
 /*   By: aamhamdi <aamhamdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 16:24:21 by aamhamdi          #+#    #+#             */
-/*   Updated: 2023/03/09 20:32:27 by aamhamdi         ###   ########.fr       */
+/*   Updated: 2023/03/10 12:19:23 by aamhamdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,9 @@ typedef struct s_images
 	void	*pr;
 	void	*pl;
 	void	*pc;
-	void	*p;
-	void	*c;
 	void	*bg;
 	void	*bc;
 	void	*e;
-	void	*m;
 	void	*oe;
 	int		size;
 }	t_image;
@@ -64,29 +61,6 @@ typedef struct s_items
 	struct s_items	*next;
 }	t_item;
 
-typedef struct s_players
-{
-	int	x;
-	int	y;
-}	t_player;
-
-typedef struct so_long
-{
-	void		*mlx;
-	void		*mlx_w;
-	int			w_w;
-	int			w_h;
-	t_player	*p;
-	t_item		*monsters;
-	t_item		*coins;
-	t_image		*img;
-	int			e_x;
-	int			e_y;
-	int			collects_n;
-	char		**map;
-	int			moves;
-}	t_long;
-
 typedef struct s_coin_imgs
 {
 	void	*c1;
@@ -95,7 +69,7 @@ typedef struct s_coin_imgs
 	void	*c4;
 	void	*c5;
 	void	*c6;
-}	t_coin_imgs;
+}	t_c_imgs;
 
 typedef struct s_monster_imgs
 {
@@ -105,7 +79,32 @@ typedef struct s_monster_imgs
 	void	*ml1;
 	void	*ml2;
 	void	*ml3;
-}	t_monster_imgs;
+}	t_m_imgs;
+
+typedef struct s_players
+{
+	int	x;
+	int	y;
+}	t_player;
+
+typedef struct so_long
+{
+	void			*mlx;
+	void			*mlx_w;
+	int				w_w;
+	int				w_h;
+	t_player		*p;
+	t_item			*monsters;
+	t_item			*coins;
+	t_image			*img;
+	t_c_imgs		*c_img;
+	t_m_imgs		*m_img;
+	int				e_x;
+	int				e_y;
+	int				collects_n;
+	char			**map;
+	int				moves;
+}	t_long;
 
 //read map
 char	**ft_read_map(int fd);
@@ -130,26 +129,28 @@ void	ft_mouve_left(t_long *g, t_image *m);
 void	handle_enmey_touch_and_exit(char item, t_long *g);
 
 //imgs initialization
-void	ft_init_images(t_long *game, t_image *images);
-void	ft_init_coins_img(t_coin_imgs *img, t_long *game);
-void	ft_init_monster_images(t_monster_imgs *img, t_long *game);
+int		ft_init_images(t_long *game, t_image *img, \
+t_c_imgs *c_img, t_m_imgs *m_img);
+void	ft_init_coins_img(t_c_imgs *img, t_long *game);
+void	ft_init_monster_images(t_m_imgs *img, t_long *game);
 
 //utils
 int		ft_strtablen(char **tabs);
 char	get_val(int x, int y, t_long *game);
 void	set_val(t_long *game, int x, int y, char c);
 void	calc_size(t_long *game);
-void	ft_calc_sizes(int *w, int *h, t_long *game);
 t_item	*get_item(int x, int y, t_long *game);
 void	get_player_position(t_long *game);
 void	ft_init(t_long *game);
 void	ft_free_list(t_item *item);
+void	ft_destroy_all(t_image *img, t_long *g);
+int		check_all_imgs(t_long *game);
 
 //animation
 int		ft_animation(t_long *game);
-void	ft_monsters_animation(t_long *g, t_monster_imgs *m);
-void	ft_coins_animation(t_long *game, t_coin_imgs *m);
-void	monster_animation_x(t_item *monster, t_long *game, t_monster_imgs *img);
+void	ft_monsters_animation(t_long *g, t_m_imgs *m);
+void	ft_coins_animation(t_long *game, t_c_imgs *m);
+void	monster_animation_x(t_item *monster, t_long *game, t_m_imgs *img);
 
 //list
 t_item	*ft_lst_creat(int mx, int my);
@@ -172,6 +173,6 @@ char	**ft_tab_dup(char **tab);
 void	fill_all_paths(char **map, int x, int y);
 int		check_all_coins_and_exit_access(char **map);
 void	ft_free(char **tabs);
-int		check_for_valid_path(char **map, int start_x, int start_y);
+int		check_for_valid_path(t_long *game);
 
 #endif
