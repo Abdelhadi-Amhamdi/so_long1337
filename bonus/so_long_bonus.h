@@ -6,7 +6,7 @@
 /*   By: aamhamdi <aamhamdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 16:24:21 by aamhamdi          #+#    #+#             */
-/*   Updated: 2023/03/10 12:19:23 by aamhamdi         ###   ########.fr       */
+/*   Updated: 2023/03/10 13:14:23 by aamhamdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,11 +106,9 @@ typedef struct so_long
 	int				moves;
 }	t_long;
 
-//read map
 char	**ft_read_map(int fd);
 int		ft_close_window(t_long *g);
 
-//draw map
 void	ft_draw_map(t_long *game);
 void	ft_draw_background(t_long *game, t_image *img, int x, int y);
 void	ft_draw_player(t_long *game, t_image *img, int x, int y);
@@ -120,7 +118,6 @@ void	ft_draw_walls(t_long *game, t_image *img, int x, int y);
 void	ft_draw_exit(t_long *game, t_image *img, int x, int y);
 void	handle_coins(t_long *g, int x, int y, char c);
 
-//mouves
 int		move_player(int keycode, t_long *game);
 void	ft_mouve_buttom(t_long *g, t_image *m);
 void	ft_mouve_top(t_long *g, t_image *m);
@@ -128,13 +125,11 @@ void	ft_mouve_right(t_long *g, t_image *m);
 void	ft_mouve_left(t_long *g, t_image *m);
 void	handle_enmey_touch_and_exit(char item, t_long *g);
 
-//imgs initialization
 int		ft_init_images(t_long *game, t_image *img, \
 t_c_imgs *c_img, t_m_imgs *m_img);
 void	ft_init_coins_img(t_c_imgs *img, t_long *game);
 void	ft_init_monster_images(t_m_imgs *img, t_long *game);
 
-//utils
 int		ft_strtablen(char **tabs);
 char	get_val(int x, int y, t_long *game);
 void	set_val(t_long *game, int x, int y, char c);
@@ -146,19 +141,16 @@ void	ft_free_list(t_item *item);
 void	ft_destroy_all(t_image *img, t_long *g);
 int		check_all_imgs(t_long *game);
 
-//animation
 int		ft_animation(t_long *game);
 void	ft_monsters_animation(t_long *g, t_m_imgs *m);
 void	ft_coins_animation(t_long *game, t_c_imgs *m);
 void	monster_animation_x(t_item *monster, t_long *game, t_m_imgs *img);
 
-//list
 t_item	*ft_lst_creat(int mx, int my);
 t_item	*last_lst(t_item *items);
 void	ft_lst_add_back(t_item **items, t_item *new_item);
 void	create_item(int mx, int my, t_item **items);
 
-// parsing
 char	**parsing(int ac, char *filename);
 int		check_map_size(int *s);
 char	**ft_read_map(int fd);
@@ -168,7 +160,6 @@ int		check_sides(char **map, int width);
 int		check_borders(char **map, int *sizes);
 void	ft_print_error(int status);
 
-// check_valid_path
 char	**ft_tab_dup(char **tab);
 void	fill_all_paths(char **map, int x, int y);
 int		check_all_coins_and_exit_access(char **map);

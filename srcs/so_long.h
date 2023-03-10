@@ -6,7 +6,7 @@
 /*   By: aamhamdi <aamhamdi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 16:24:21 by aamhamdi          #+#    #+#             */
-/*   Updated: 2023/03/10 12:48:53 by aamhamdi         ###   ########.fr       */
+/*   Updated: 2023/03/10 13:17:00 by aamhamdi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,8 @@ typedef struct so_long
 	int			s;
 }	t_long;
 
-// read map
 char	**ft_read_map(int fd);
 
-// draw map
 void	ft_draw_map(t_long *game);
 void	ft_close_window(t_long *game, char action);
 void	end_game(char type, t_long *game);
@@ -84,16 +82,13 @@ void	ft_draw_background(t_long *game, t_image *img, int x, int y);
 void	ft_draw_walls(t_long *game, t_image *img, int x, int y);
 void	draw_components(char c, t_long *game, int x, int y);
 
-//mouves
 int		move_player(int keycode, t_long *game);
 void	handle_coins(t_long *g, char c);
 void	ft_move_right(t_long *g, int *mouves);
 void	ft_move_left(t_long *g, int *mouves);
 void	ft_move_top(t_long *g, int *mouves);
 void	ft_move_buttom(t_long *g, int *mouves);
-// int		ft_close(int keycode, t_long *game, t_image *images);
 
-//parsing
 int		check_valid_path(t_long *game);
 int		check_access_to_coins_and_player(char **map);
 char	**parsing(int ac, char *filename);
@@ -109,16 +104,13 @@ int		check_map_items(char **map, t_parsing_items *items);
 void	ft_free(char **data);
 void	ft_print_error(int status);
 
-// init images
 int		ft_init_images(t_long *game, t_image *img);
 
-// utils
 char	get_val(int x, int y, t_long *game);
 void	set_val(t_long *game, int x, int y, char c);
 int		ft_str_tablen(char **tabs);
 void	calc_window_size(t_long *game);
 char	**ft_tabdup(char **map);
 void	get_player_position(t_long *game);
-// int		ft_close_game(t_long *game);
 
 #endif
